@@ -82,7 +82,8 @@ as
       ,osnovica                         number
       ,kamata_prethodnog_razdoblja      number
       ,umanjenje_zbog_uplate            number
-      ,osnovica_za_izracun              number
+      ,osnovica_izracuna_po_glavnici    number
+      ,osnovica_izracuna_po_kamati      number
       ,datum_od                         date
       ,datum_do                         date
       ,broj_dana                        integer

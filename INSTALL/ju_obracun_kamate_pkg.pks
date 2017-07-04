@@ -26,10 +26,11 @@ as
 
 -------------------------------------------------------------------------------
      type izracun_glavnice_rec is record(
-        glavnica_id           number
-       ,datum_dospijeca       date
-       ,orginal_osnovnica     number
-       ,osnovica_za_izracun   number
+        glavnica_id                     number
+       ,datum_dospijeca                 date
+       ,orginal_osnovnica               number
+       ,osnovica_izracuna_po_glavnici   number
+       ,osnovica_izracuna_po_kamati     number
      );
      
      type temporal_glavnice_tab_type is table of izracun_glavnice_rec
