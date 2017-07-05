@@ -18,6 +18,7 @@ alter table JU_DEFINICIJA_TIPA_IZRACUNA disable constraint JU_DTOA_ZKI_FK;
 prompt Disabling foreign key constraints for JU_KAMATNE_STOPE...
 alter table JU_KAMATNE_STOPE disable constraint JU_KS_TOA_ID;
 alter table JU_KAMATNE_STOPE disable constraint JU_KS_ZKI_FK;
+alter table ju_session_izracun_zatezne disable constraint JU_SIE_TIA_FK;
 
 prompt Truncating JU_DEFINICIJA_TIPA_IZRACUNA...
 truncate table JU_DEFINICIJA_TIPA_IZRACUNA
@@ -167,6 +168,7 @@ prompt Enabling triggers for JU_KAMATNE_STOPE...
 alter table JU_KAMATNE_STOPE enable all triggers;
 prompt Enabling triggers for JU_NACINI_OBRACUNA...
 alter table JU_NACINI_OBRACUNA enable all triggers;
+alter table ju_session_izracun_zatezne disable constraint JU_SIE_TIA_FK;
 set feedback on
 set define on
 prompt Done.

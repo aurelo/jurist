@@ -48,7 +48,7 @@ as
     )
     ;
 -------------------------------------------------------------------------------
-    type glavnica is table of transakcija_rec
+    type glavnice is table of transakcija_rec
     index by binary_integer;
     type uplate   is table of transakcija_rec
     index by binary_integer;
@@ -58,6 +58,7 @@ as
      ,iznos                             number
      ,datum_od                          date
      ,datum_do                          date
+     ,kamatna_stopa_id                  number
      ,kamatna_stopa                     number
     );
 -------------------------------------------------------------------------------
@@ -69,6 +70,7 @@ as
      ,iznos                             number
      ,datum_od                          date
      ,datum_do                          date
+     ,kamatna_stopa_id                  number     
      ,kamatna_stopa                     number
      ,nacin_obracuna                    NACIN_OBRACUNA_KAMATE
     );
@@ -87,6 +89,7 @@ as
       ,datum_od                         date
       ,datum_do                         date
       ,broj_dana                        integer
+      ,kamatna_stopa_id                 number
       ,kamatna_stopa                    number
       ,nacin_izracuna_kamate            varchar2(1)
       ,zatezna_kamata                   number
@@ -95,70 +98,6 @@ as
 -------------------------------------------------------------------------------
     type izracun_kamate_tab_type is table of izracun_kamate_rec
     index by binary_integer;
--------------------------------------------------------------------------------
-----    -- iznos stavki ostao nakon naplate po prioritetu
-----    type naplata_dugovanja_rec is record (
-----      stavka                   varchar2(4)
-----     ,iznos                    number
-----     ,datum_od                 date
-----     ,datum_do                 date
-----    )
-----    ;
------------------------------------------------------------------------------------
-----    type naplata_dugovanja_tab_type is table of naplata_dugovanja_rec
-----    index by binary_integer;
----------------------------------------------------------------------------------
---    -- za koju stavku je obracunato koliko kamate za koji broj dana po kojoj kamatnoj stopi
---    type raspodjela_obracuna_rec is record (
---      datum_od                 date
---     ,datum_do                 date
---     ,broj_dana                integer
---     ,kamatna_stopa_obracuna   number
---     ,metoda_izracuna_kamate   varchar2(1)
---     ,glavnica                 number
---     ,uplata                   number
---    )
---    ;
----------------------------------------------------------------------------------
---    type raspodjela_obracuna_tab_type is table of raspodjela_obracuna_rec
---    index by binary_integer;
----------------------------------------------------------------------------------
-----  za glavnicu raspodjela po periodima kamatnih stopa, nacina obracuna kamate
-----  te uplata u periodu
----------------------------------------------------------------------------------
---    type raspodjela_stavke_rec is record (
---      glavnica                   transakcija_rec
---     ,obracun_za_glavnicu_tab    raspodjela_obracuna_tab_type
---    );
----------------------------------------------------------------------------------
---    type obracuni_stavki_tab_type is table of raspodjela_stavke_rec
---    index by binary_integer;
----------------------------------------------------------------------------------
---    type izracun_zatezne_rec is record (
---      datum_od                      date
---     ,datum_do                      date
---     ,broj_dana                     integer
---     ,kamatna_stopa_obracuna        number
---     ,metoda_izracuna_kamate        varchar2(1)
---     ,glavnica                      number
---     ,uplata                        number
---     ,godina_prethodnog_razdoblja   number
---     ,kamata_prethodnog_razdoblja   number
---     ,osnovica                      number
---     ,zatezna_kamata                number
---     ,ostatak_uplate                number
---    );
----------------------------------------------------------------------------------
---    type izracun_zatezne_tab_type is table of izracun_zatezne_rec
---    index by binary_integer;
----------------------------------------------------------------------------------
---    type izracun_zatezne_za_stavku_rec is record (
---      glavnica                     transakcija_rec
---     ,izracun_zatezne_tab          izracun_zatezne_tab_type
---    );
----------------------------------------------------------------------------------
---    type obracun_zatezne_tab_type is table of izracun_zatezne_za_stavku_rec
---    index by binary_integer;
--------------------------------------------------------------------------------
+
 end ju_tipovi_pkg;
 /

@@ -32,10 +32,10 @@ as
 
 
     function glavnice_primjer
-    return ju_tipovi_pkg.glavnica
+    return ju_tipovi_pkg.glavnice
     is
         v_glavnica_rec    ju_tipovi_pkg.transakcija_rec;
-        v_glavnica_tab    ju_tipovi_pkg.glavnica;
+        v_glavnica_tab    ju_tipovi_pkg.glavnice;
     begin
 ----        v_glavnica_rec.opis := C_GLAVNICA_TIP;
 
@@ -121,9 +121,9 @@ as
     end;
 -------------------------------------------------------------------------------
     function primjer_prve_glavnice
-    return ju_tipovi_pkg.glavnica
+    return ju_tipovi_pkg.glavnice
     is
-       v_rata_tab   ju_tipovi_pkg.glavnica;
+       v_rata_tab   ju_tipovi_pkg.glavnice;
     begin
        v_rata_tab(1) :=  glavnice_primjer()(1);
 
@@ -559,7 +559,7 @@ as
    procedure t_eodvjetnik_primjer1
    is
          v_dug_rec            ju_tipovi_pkg.transakcija_rec;
-         v_glavnice_tab       ju_tipovi_pkg.glavnica;
+         v_glavnice_tab       ju_tipovi_pkg.glavnice;
 
          v_obracun_tab        ju_tipovi_pkg.izracun_kamate_tab_type;
          v_nema_uplata_tab    ju_tipovi_pkg.uplate;
@@ -612,7 +612,7 @@ as
    procedure t_eodvjetnik_primjer2
    is
          v_dug_rec            ju_tipovi_pkg.transakcija_rec;
-         v_glavnice_tab       ju_tipovi_pkg.glavnica;
+         v_glavnice_tab       ju_tipovi_pkg.glavnice;
 
          v_obracun_tab        ju_tipovi_pkg.izracun_kamate_tab_type;
          v_nema_uplata_tab    ju_tipovi_pkg.uplate;
@@ -671,7 +671,7 @@ as
  procedure t_eodvjetnik_primjer3
    is
          v_dug_rec            ju_tipovi_pkg.transakcija_rec;
-         v_glavnice_tab       ju_tipovi_pkg.glavnica;
+         v_glavnice_tab       ju_tipovi_pkg.glavnice;
 
          v_obracun_tab        ju_tipovi_pkg.izracun_kamate_tab_type;
          v_nema_uplata_tab    ju_tipovi_pkg.uplate;
@@ -729,7 +729,7 @@ as
    procedure t_primjer_uplate1
    is
      v_glavnica_rec    ju_tipovi_pkg.transakcija_rec;
-     v_glavnica_tab    ju_tipovi_pkg.glavnica;
+     v_glavnica_tab    ju_tipovi_pkg.glavnice;
      
      v_uplata_rec      ju_tipovi_pkg.transakcija_rec;
      v_uplata_tab      ju_tipovi_pkg.uplate;
@@ -772,7 +772,7 @@ as
    procedure t_primjer_uplate_avansa
    is
      v_glavnica_rec    ju_tipovi_pkg.transakcija_rec;
-     v_glavnica_tab    ju_tipovi_pkg.glavnica;
+     v_glavnica_tab    ju_tipovi_pkg.glavnice;
      
      v_uplata_rec      ju_tipovi_pkg.transakcija_rec;
      v_uplata_tab      ju_tipovi_pkg.uplate;
@@ -815,7 +815,7 @@ as
    procedure t_primjer_dvije_uplate
    is
      v_glavnica_rec    ju_tipovi_pkg.transakcija_rec;
-     v_glavnica_tab    ju_tipovi_pkg.glavnica;
+     v_glavnica_tab    ju_tipovi_pkg.glavnice;
      
      v_uplata_rec      ju_tipovi_pkg.transakcija_rec;
      v_uplata_tab      ju_tipovi_pkg.uplate;
@@ -866,7 +866,7 @@ as
    procedure t_primjer_zatvaranja
    is
      v_glavnica_rec    ju_tipovi_pkg.transakcija_rec;
-     v_glavnica_tab    ju_tipovi_pkg.glavnica;
+     v_glavnica_tab    ju_tipovi_pkg.glavnice;
      
      v_uplata_rec      ju_tipovi_pkg.transakcija_rec;
      v_uplata_tab      ju_tipovi_pkg.uplate;
@@ -923,7 +923,7 @@ as
    procedure t_uplata_na_zadnji_dan
    is
      v_glavnica_rec    ju_tipovi_pkg.transakcija_rec;
-     v_glavnica_tab    ju_tipovi_pkg.glavnica;
+     v_glavnica_tab    ju_tipovi_pkg.glavnice;
      
      v_uplata_rec      ju_tipovi_pkg.transakcija_rec;
      v_uplata_tab      ju_tipovi_pkg.uplate;
@@ -966,7 +966,7 @@ as
    procedure t_uplata_manja_od_kamate
    is
      v_glavnica_rec    ju_tipovi_pkg.transakcija_rec;
-     v_glavnica_tab    ju_tipovi_pkg.glavnica;
+     v_glavnica_tab    ju_tipovi_pkg.glavnice;
      
      v_uplata_rec      ju_tipovi_pkg.transakcija_rec;
      v_uplata_tab      ju_tipovi_pkg.uplate;

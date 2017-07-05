@@ -37,7 +37,7 @@ as
      index by pls_integer;
 -------------------------------------------------------------------------------
      function indeksiraj_glavnice(
-       p_glavnica_tab             in    ju_tipovi_pkg.glavnica
+       p_glavnica_tab             in    ju_tipovi_pkg.glavnice
      )
      return temporal_glavnice_tab_type
      ;
@@ -93,7 +93,7 @@ as
      function obracunaj_zateznu(
        p_kamatne_stope_tab     in    ju_tipovi_pkg.kamatne_stope_tab_type
       ,p_nacin_obracuna_tab    in    ju_tipovi_pkg.nacin_obracuna_tab_type
-      ,p_glavnice_tab          in    ju_tipovi_pkg.glavnica
+      ,p_glavnice_tab          in    ju_tipovi_pkg.glavnice
       ,p_uplate_tab            in    ju_tipovi_pkg.uplate
       ,p_datum_obracuna        in    date  default sysdate
      )
@@ -101,7 +101,7 @@ as
 
 -------------------------------------------------------------------------------
      function suma_glavnice_old(
-       p_uplate_tab                in    ju_tipovi_pkg.glavnica
+       p_uplate_tab                in    ju_tipovi_pkg.glavnice
      )
      return number;
 -------------------------------------------------------------------------------

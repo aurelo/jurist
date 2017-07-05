@@ -242,7 +242,7 @@ as
      end;
 -------------------------------------------------------------------------------     
      function indeksiraj_glavnice(
-       p_glavnica_tab             in    ju_tipovi_pkg.glavnica
+       p_glavnica_tab             in    ju_tipovi_pkg.glavnice
      )
      return temporal_glavnice_tab_type
      is
@@ -332,9 +332,10 @@ as
                p_datum_obracuna > p_kamatne_stope_tab(i).datum_do
               )
           then
-             v_period_rec.kamatna_stopa := p_kamatne_stope_tab(i).stopa;
-             v_period_rec.datum_od      := greatest(v_datum_dospijeca_glavnice, p_kamatne_stope_tab(i).datum_od);
-             v_period_rec.datum_do      := least(p_datum_obracuna, p_kamatne_stope_tab(i).datum_do);
+             v_period_rec.kamatna_stopa_id := p_kamatne_stope_tab(i).id;
+             v_period_rec.kamatna_stopa    := p_kamatne_stope_tab(i).stopa;
+             v_period_rec.datum_od         := greatest(v_datum_dospijeca_glavnice, p_kamatne_stope_tab(i).datum_od);
+             v_period_rec.datum_do         := least(p_datum_obracuna, p_kamatne_stope_tab(i).datum_do);
 
              v_godina_od := to_char(v_period_rec.datum_od, 'YYYY');
              v_godina_do := to_char(v_period_rec.datum_do, 'YYYY');
@@ -452,11 +453,12 @@ as
        end;
        -------------------
      begin
-       v_period_izracuna_rec.glavnica_id    := p_period_glavnica_ks.glavnica_id;
-       v_period_izracuna_rec.iznos          := p_period_glavnica_ks.iznos;
-       v_period_izracuna_rec.kamatna_stopa  := p_period_glavnica_ks.kamatna_stopa;
+       v_period_izracuna_rec.glavnica_id      := p_period_glavnica_ks.glavnica_id;
+       v_period_izracuna_rec.iznos            := p_period_glavnica_ks.iznos;
+       v_period_izracuna_rec.kamatna_stopa_id := p_period_glavnica_ks.kamatna_stopa_id;
+       v_period_izracuna_rec.kamatna_stopa    := p_period_glavnica_ks.kamatna_stopa;
 
-       v_glavnica_po_ks_za_algoritam        := p_period_glavnica_ks;
+       v_glavnica_po_ks_za_algoritam          := p_period_glavnica_ks;
 
        output_glavnica_po_ksu(v_glavnica_po_ks_za_algoritam, false);
 
@@ -549,6 +551,8 @@ as
          v_izracun_zatezne_rec.datum_od    := p_period_glavnica_ks_nacin.datum_od;
          v_izracun_zatezne_rec.datum_do    := p_period_glavnica_ks_nacin.datum_do;
          v_izracun_zatezne_rec.broj_dana   := p_period_glavnica_ks_nacin.datum_do - p_period_glavnica_ks_nacin.datum_od + 1;
+         
+         v_izracun_zatezne_rec.kamatna_stopa_id      := p_period_glavnica_ks_nacin.kamatna_stopa_id;
          v_izracun_zatezne_rec.kamatna_stopa         := p_period_glavnica_ks_nacin.kamatna_stopa;
          v_izracun_zatezne_rec.nacin_izracuna_kamate := p_period_glavnica_ks_nacin.nacin_obracuna;
 
@@ -636,7 +640,7 @@ as
      function obracunaj_zateznu(
        p_kamatne_stope_tab     in    ju_tipovi_pkg.kamatne_stope_tab_type
       ,p_nacin_obracuna_tab    in    ju_tipovi_pkg.nacin_obracuna_tab_type
-      ,p_glavnice_tab          in    ju_tipovi_pkg.glavnica
+      ,p_glavnice_tab          in    ju_tipovi_pkg.glavnice
       ,p_uplate_tab            in    ju_tipovi_pkg.uplate
       ,p_datum_obracuna        in    date  default sysdate
      )
@@ -914,7 +918,7 @@ as
 
 -------------------------------------------------------------------------------
      function suma_glavnice_old(
-       p_uplate_tab                in    ju_tipovi_pkg.glavnica
+       p_uplate_tab                in    ju_tipovi_pkg.glavnice
      )
      return number
      is
