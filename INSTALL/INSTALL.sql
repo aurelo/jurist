@@ -5,7 +5,6 @@
 
 -- package specification
 @@ju_tipovi_pkg.pks
-@@ju_adapter_pkg.pks
 @@ju_model_pkg.pks
 @@ju_obracun_kamate_pkg.pks
 @@ju_adapter_pkg.pks
@@ -14,7 +13,6 @@
 @@ju_integration_test_pkg.pks
 
 -- package body
-@@ju_adapter_pkg.pkb
 @@ju_model_pkg.pkb
 @@ju_obracun_kamate_pkg.pkb
 @@ju_adapter_pkg.pkb

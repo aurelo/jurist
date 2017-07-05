@@ -28,7 +28,6 @@ create table JU_SESSION_GLAVNICE
 (
   id              NUMBER not null,
   sie_id          NUMBER not null,
-  session_context VARCHAR2(32) not null,
   iznos           NUMBER,
   datum_dospijeca DATE
 )
@@ -45,7 +44,6 @@ create table JU_SESSION_UPLATE
 (
   id              NUMBER not null,
   sie_id          NUMBER not null,
-  session_context VARCHAR2(32) not null,
   iznos           NUMBER,
   datum_uplate    DATE
 )
@@ -61,7 +59,6 @@ prompt
 create table JU_SESSION_REZULTAT_IZRACUNA
 (
   id                            NUMBER not null,
-  session_context               VARCHAR2(32),
   sie_id                        NUMBER,
   glavnica_id                   NUMBER,
   uplata_id                     NUMBER,
