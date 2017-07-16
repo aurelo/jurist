@@ -25,9 +25,9 @@ as
    DULJE_OD_GODINE constant RAZDOBLJE_OBRACUNA_KAMATE := '>G';
     -- NACIN_OBRACUNA_REC
     -- nacin obracua koji se primjenjuje za razdoblje
-    -- METODA IZRAÉ•NA:
+    -- METODA IZRAĂ‰â€˘NA:
     -- # ili proporcionalna ili konformna
-    -- RAZDOBLJE OBRAÉ•NA
+    -- RAZDOBLJE OBRAĂ‰â€˘NA
     -- # veci od godine dana, manje od godine dana ili svejedno
     type nacin_obracuna_rec  is record(
       metoda_izracuna_kamate     NACIN_OBRACUNA_KAMATE
@@ -70,7 +70,7 @@ as
      ,iznos                             number
      ,datum_od                          date
      ,datum_do                          date
-     ,kamatna_stopa_id                  number     
+     ,kamatna_stopa_id                  number
      ,kamatna_stopa                     number
      ,nacin_obracuna                    NACIN_OBRACUNA_KAMATE
     );
@@ -81,6 +81,7 @@ as
     type izracun_kamate_rec is record(
        glavnica_id                      number
       ,uplata_id                        number
+      ,uplata_na_zadnji_dan_YN          varchar2(1)
       ,osnovica                         number
       ,kamata_prethodnog_razdoblja      number
       ,umanjenje_zbog_uplate            number

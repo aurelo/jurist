@@ -10,6 +10,7 @@ as
        ,datum_uplate        date
        ,orginal_iznos       number
        ,preostali_iznos     number
+       ,poredak             integer
      );
 
 --     type uplate_tab_type is  table of izracun_uplate_rec
@@ -32,7 +33,7 @@ as
        ,osnovica_izracuna_po_glavnici   number
        ,osnovica_izracuna_po_kamati     number
      );
-     
+
      type temporal_glavnice_tab_type is table of izracun_glavnice_rec
      index by pls_integer;
 -------------------------------------------------------------------------------
@@ -41,7 +42,7 @@ as
      )
      return temporal_glavnice_tab_type
      ;
-     
+
 -------------------------------------------------------------------------------
 -- PRIVREMENO PUBLIC PROCEDURE ZBOG TESTA
 -------------------------------------------------------------------------------
@@ -77,6 +78,7 @@ as
      function nacin_izracuna_kamate(
        p_period_glavnica_ks    in    ju_tipovi_pkg.glavnica_po_kamatnoj_stopi_rec
       ,p_nacin_obracuna_tab    in    ju_tipovi_pkg.nacin_obracuna_tab_type
+      ,p_datum_do_zbog_uplate  in    date default null
      )
      return ju_tipovi_pkg.period_nacin_izracuna_tt;
 -------------------------------------------------------------------------------
