@@ -18,8 +18,14 @@ alter table JU_DEFINICIJA_TIPA_IZRACUNA disable constraint JU_DTOA_ZKI_FK;
 prompt Disabling foreign key constraints for JU_KAMATNE_STOPE...
 alter table JU_KAMATNE_STOPE disable constraint JU_KS_TOA_ID;
 alter table JU_KAMATNE_STOPE disable constraint JU_KS_ZKI_FK;
-alter table ju_session_izracun_zatezne disable constraint JU_SIE_TIA_FK;
-
+prompt Disabling foreign key construaints for ju_izracun_zatezne
+alter table ju_izracun_zatezne disable constraint JU_IZE_TIA_FK;
+prompt Disabling foreign key constraint for JU_PODACI_OSOBE
+alter table JU_PODACI_OSOBE disable constraint JU_PODACI_OSOBE_TOA_FK;
+alter table JU_PODACI_OSOBE disable constraint JU_PODACI_OSOBE_JUS_FK;
+prompt Truncating JU_USERS...
+truncate table ju_users
+/
 prompt Truncating JU_DEFINICIJA_TIPA_IZRACUNA...
 truncate table JU_DEFINICIJA_TIPA_IZRACUNA
 /
@@ -38,9 +44,30 @@ truncate table JU_ZAKONI
 prompt Truncating JU_TIPOVI_OSOBA...
 truncate table JU_TIPOVI_OSOBA
 /
+prompt Loading JU_USERS...
+insert into ju_users (
+  id
+ ,username
+ ,email
+ ,password_hash
+ ,active
+ ,locked
+ ,verified
+)
+values
+(
+  1
+ ,'JANKOVIC'
+ ,'odvjetnik-jankovic@ka.t-com.hr'
+ ,'1234'
+ ,'Y'
+ ,'N'
+ ,'Y'
+)
+/
 prompt Loading JU_TIPOVI_OSOBA...
 insert into JU_TIPOVI_OSOBA (id, opis)
-values (1, 'FiziËka osoba');
+values (1, 'Fiziƒçka osoba');
 insert into JU_TIPOVI_OSOBA (id, opis)
 values (2, 'Pravna osoba');
 commit;
@@ -49,18 +76,18 @@ prompt Loading JU_ZAKONI...
 insert into JU_ZAKONI (id, opis, datum_od, datum_do)
 values (1, 'Zakon o kamatama', to_date('30-05-1994', 'dd-mm-yyyy'), to_date('31-12-2007', 'dd-mm-yyyy'));
 insert into JU_ZAKONI (id, opis, datum_od, datum_do)
-values (4, 'Zakon o financijskom poslovanju i predsteËajnoj nagodbi', to_date('30-06-2013', 'dd-mm-yyyy'), null);
+values (4, 'Zakon o financijskom poslovanju i predsteƒçajnoj nagodbi', to_date('30-06-2013', 'dd-mm-yyyy'), null);
 insert into JU_ZAKONI (id, opis, datum_od, datum_do)
 values (2, 'Zakon o obveznim odnosima', to_date('01-01-2008', 'dd-mm-yyyy'), null);
 commit;
 prompt 3 records loaded
 prompt Loading JU_TIPOVI_IZRACUNA...
 insert into JU_TIPOVI_IZRACUNA (id, naziv, toa_id, sifra)
-values (1, 'izraËun za fiziËke osobe', 1, 'FZ');
+values (1, 'izraƒçun za fiziƒçke osobe', 1, 'FZ');
 insert into JU_TIPOVI_IZRACUNA (id, naziv, toa_id, sifra)
-values (21, 'izraËun za pravne osobe (ZOO)', 2, 'MB-ZOO');
+values (21, 'izraƒçun za pravne osobe (ZOO)', 2, 'MB-ZOO');
 insert into JU_TIPOVI_IZRACUNA (id, naziv, toa_id, sifra)
-values (41, 'izraËun za pravne osobe (ZPFFN)', 2, 'MB-ZFPPN');
+values (41, 'izraƒçun za pravne osobe (ZPFFN)', 2, 'MB-ZFPPN');
 commit;
 prompt 3 records loaded
 prompt Loading JU_KAMATNE_STOPE...
@@ -168,7 +195,9 @@ prompt Enabling triggers for JU_KAMATNE_STOPE...
 alter table JU_KAMATNE_STOPE enable all triggers;
 prompt Enabling triggers for JU_NACINI_OBRACUNA...
 alter table JU_NACINI_OBRACUNA enable all triggers;
-alter table ju_session_izracun_zatezne disable constraint JU_SIE_TIA_FK;
+alter table ju_izracun_zatezne enable constraint JU_IZE_TIA_FK;
+alter table JU_PODACI_OSOBE enable constraint JU_PODACI_OSOBE_TOA_FK;
+alter table JU_PODACI_OSOBE enable constraint JU_PODACI_OSOBE_JUS_FK;
 set feedback on
 set define on
 prompt Done.

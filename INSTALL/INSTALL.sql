@@ -1,5 +1,5 @@
 @@tables.sql
-@@tables_session.sql
+@@tables_izracun_zatezne.sql
 @@sequences.sql
 @@views.sql
 

@@ -1,4 +1,23 @@
 prompt
+prompt Creating table JU_USERS
+prompt =======================
+prompt
+create table ju_users (
+  id              number        not null
+ ,username        varchar2(30)
+ ,email           varchar2(128) not null
+ ,password_hash   varchar2(32)  not null
+ ,active          varchar2(1)   default 'Y' not null 
+ ,locked          varchar2(1)   default 'N' not null
+ ,verified        varchar2(1)   default 'N' not null
+ ,constraint ju_users_pk primary key (id)
+ ,constraint ju_users_uk unique (username)
+ ,constraint ju_users_active_chk check (active in ('Y', 'N'))
+ ,constraint ju_users_locked_chk check (locked in ('Y', 'N'))
+ ,constraint ju_users_verified_chk check (verified in ('Y', 'N'))
+)
+/
+prompt
 prompt Creating table JU_TIPOVI_OSOBA
 prompt ==============================
 prompt
@@ -119,4 +138,23 @@ alter table JU_NACINI_OBRACUNA
 alter table JU_NACINI_OBRACUNA
   add constraint JU_METODA_OBRACUNA_CHK
   check ( "METODA_OBRACUNA" in ('K', 'P'))
+/
+prompt
+prompt Creating table JU_PODACI_OSOBE
+prompt ==============================
+prompt
+create table ju_podaci_osobe (
+  id         number not null
+ ,jus_id     number not null
+ ,toa_id     number not null
+ ,vjerovnik_ili_duznik varchar2(1) not null
+ ,naziv      varchar2(256)
+ ,oib        number(11)
+ ,ulica_i_broj varchar2(512)
+ ,grad         varchar2(128)
+ ,constraint ju_podaci_osobe_pk primary key (id)
+ ,constraint ju_podaci_osobe_jus_fk foreign key (jus_id) references ju_users (id)
+ ,constraint ju_podaci_osobe_toa_fk foreign key (toa_id) references ju_tipovi_osoba (id)
+ ,constraint ju_podaci_osobe_vd_chk check (vjerovnik_ili_duznik in ('V', 'D'))
+)
 /
