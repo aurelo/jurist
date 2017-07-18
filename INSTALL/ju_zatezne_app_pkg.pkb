@@ -40,6 +40,8 @@ as
      ,p_tip_izracuna_id   in     ju_tipovi_izracuna.id%type
      ,p_datum_izracuna    in     date
      ,p_opis              in     ju_izracun_zatezne.opis%type
+     ,p_vjerovnik_id      in     ju_izracun_zatezne.vjerovnik_id%type
+     ,p_duznik_id         in     ju_izracun_zatezne.duznik_id%type
     )
     return   ju_izracun_zatezne.id%type
     is
@@ -51,6 +53,8 @@ as
         tia_id,
         datum_izracuna,
         opis,
+        vjerovnik_id,
+        duznik_id,
         datum_kreacije
       )
       values
@@ -60,6 +64,8 @@ as
         p_tip_izracuna_id,
         p_datum_izracuna,
         p_opis,
+        p_vjerovnik_id,
+        p_duznik_id,
         sysdate
       )
       returning id

@@ -13,6 +13,8 @@ as
      ,p_tip_izracuna_id   in     ju_tipovi_izracuna.id%type
      ,p_datum_izracuna    in     date
      ,p_opis              in     ju_izracun_zatezne.opis%type
+     ,p_vjerovnik_id      in     ju_izracun_zatezne.vjerovnik_id%type
+     ,p_duznik_id         in     ju_izracun_zatezne.duznik_id%type
     )
     return   ju_izracun_zatezne.id%type
     ;

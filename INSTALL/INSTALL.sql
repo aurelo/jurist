@@ -9,6 +9,7 @@
 @@ju_obracun_kamate_pkg.pks
 @@ju_adapter_pkg.pks
 @@ju_zatezne_app_pkg.pks
+@@ju_session_izracun_pkg.pks
 @@ju_test_pkg.pks
 @@ju_integration_test_pkg.pks
 
@@ -17,8 +18,12 @@
 @@ju_obracun_kamate_pkg.pkb
 @@ju_adapter_pkg.pkb
 @@ju_zatezne_app_pkg.pkb
+@@ju_session_izracun_pkg.pks
 @@ju_test_pkg.pkb
 @@ju_integration_test_pkg.pkb
+
+@@views_session.sql
+
 
 -- triggers
 @@triggers.sql
