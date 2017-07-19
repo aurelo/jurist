@@ -9,7 +9,7 @@ select    acs.seq_id
 ,         acs.d001 datum_izracuna
 ,         acs.c001 opis_izracuna
 from      apex_collections acs
-where     acs.collection_name = ju_session_izracun_pkg.ZATEZNE_IZRACUN
+where     acs.collection_name = 'ZATEZNE_IZRACUN'--ju_session_izracun_pkg.ZATEZNE_IZRACUN
 /
 prompt
 prompt Creating view JU_SESSION_GLAVNICE_V
@@ -21,7 +21,7 @@ select    acs.seq_id
 ,         acs.n001 iznos
 ,         acs.d001 datum_dospijeca
 from      apex_collections acs
-where     acs.collection_name = ju_session_izracun_pkg.GLAVNICE
+where     acs.collection_name = 'GLAVNICE'--ju_session_izracun_pkg.GLAVNICE
 /
 prompt
 prompt Creating view JU_SESSION_UPLATE_V
@@ -33,7 +33,7 @@ select    acs.seq_id
 ,         acs.n001 iznos
 ,         acs.d001 datum_uplate
 from      apex_collections acs
-where     acs.collection_name = ju_session_izracun_pkg.UPLATE
+where     acs.collection_name = 'UPLATE'--ju_session_izracun_pkg.UPLATE
 /
 prompt
 prompt Creating view JU_SESSION_REZULTAT_IZRACUNA_V
@@ -59,7 +59,7 @@ select    acs.seq_id
 ,         to_number(acs.c011) /100 zatezna_kamata                   
 ,         to_number(acs.c012) /100 ukupna_zatezna_kamata            
 from      apex_collections acs
-where     acs.collection_name = ju_session_izracun_pkg.ZATEZNE_REZULTAT
+where     acs.collection_name = 'ZATEZNE_REZULTAT'--ju_session_izracun_pkg.ZATEZNE_REZULTAT
 /
 prompt
 prompt Creating view JU_SESSION_REKAPITULACIJA_V

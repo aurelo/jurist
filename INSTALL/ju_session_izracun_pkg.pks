@@ -97,6 +97,7 @@ as
     p_user_id         in    ju_users.id%type
    ,p_vjerovnik_id    in    number
    ,p_duznik_id       in    number
+   ,p_opis            in    varchar2
   );
 
   procedure saved_izracun_to_session(

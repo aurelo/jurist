@@ -30,7 +30,11 @@ as
      v_obracun_id  := ju_zatezne_app_pkg.get_izracun_id(p_user_id         => 1, -- loaded user
                                                         p_tip_izracuna_id => 1,-- za fizicke osobe
                                                         p_datum_izracuna  => to_date('25.04.2014', 'dd.mm.yyyy'),
-                                                        p_opis            => 'Izracun jedne glavnice');
+                                                        p_opis            => 'Izracun jedne glavnice',
+                                                        p_vjerovnik_id    => null,
+                                                        p_duznik_id       => null
+                                                        );
+
      insert into ju_glavnice
       (
         id

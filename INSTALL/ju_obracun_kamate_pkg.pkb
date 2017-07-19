@@ -60,7 +60,7 @@ as
   begin
     if p_output
     then
-        dbms_output.put_line('PERIOD IZRACUNA: '||to_char(p_glavnica_po_ksu_rec.datum_od, 'dd.mm.yyyy')||'-'||to_char(p_glavnica_po_ksu_rec.datum_do, 'dd.mm.yyyy')||' uz ks: '||p_glavnica_po_ksu_rec.kamatna_stopa);
+        dbms_output.put_line('PERIOD IZRACÂUNA: '||to_char(p_glavnica_po_ksu_rec.datum_od, 'dd.mm.yyyy')||'-'||to_char(p_glavnica_po_ksu_rec.datum_do, 'dd.mm.yyyy')||' uz ks: '||p_glavnica_po_ksu_rec.kamatna_stopa);
     end if;
   end;
 -------------------------------------------------------------------------------
@@ -85,10 +85,10 @@ as
     end if;
 
     i := p_uplate_tab.first;
-    
+
     loop
-        dbms_output.put_line('Indeks tablice: '||i ||' uplata id: '||p_uplate_tab(i).uplata_id||' dana: '||to_char(p_uplate_tab(i).datum_uplate, 'dd.mm.yyyy')||' u orginal iznosu: '||p_uplate_tab(i).orginal_iznos||' preostali iznos: '||p_uplate_tab(i).preostali_iznos||' poredak: '||p_uplate_tab(i).poredak);        
-    
+        dbms_output.put_line('Indeks tablice: '||i ||' uplata id: '||p_uplate_tab(i).uplata_id||' dana: '||to_char(p_uplate_tab(i).datum_uplate, 'dd.mm.yyyy')||' u orginal iznosu: '||p_uplate_tab(i).orginal_iznos||' preostali iznos: '||p_uplate_tab(i).preostali_iznos||' poredak: '||p_uplate_tab(i).poredak);
+
         exit when i = p_uplate_tab.last or i is null;
         i := p_uplate_tab.next(i);
     end loop;
@@ -108,7 +108,7 @@ as
   begin
     if p_output
     then
-       dbms_output.put_line('NACIN OBRCÂUNA: '||p_nacin_obracuna_u_periodu_rec.nacin_obracuna||' za period: '||to_char(p_nacin_obracuna_u_periodu_rec.datum_od, 'dd.mm.yyyy')||'-'||to_char(p_nacin_obracuna_u_periodu_rec.datum_do, 'dd.mm.yyyy'));
+       dbms_output.put_line('NACIN OBRCĂ‚ÂUNA: '||p_nacin_obracuna_u_periodu_rec.nacin_obracuna||' za period: '||to_char(p_nacin_obracuna_u_periodu_rec.datum_od, 'dd.mm.yyyy')||'-'||to_char(p_nacin_obracuna_u_periodu_rec.datum_do, 'dd.mm.yyyy'));
     end if;
   end;
 -------------------------------------------------------------------------------
@@ -246,7 +246,7 @@ as
                 v_izracun_uplate.datum_uplate    := p_uplate_tab(i).datum;
                 v_izracun_uplate.orginal_iznos   := p_uplate_tab(i).iznos;
                 v_izracun_uplate.preostali_iznos := p_uplate_tab(i).iznos;
-                
+
                 v_izracun_uplate.poredak         := i;
 
                 v_indeksirane_uplate_tab(p_uplate_tab(i).id) := v_izracun_uplate;
@@ -275,7 +275,7 @@ as
 
               v_izracun_glavnice_rec.osnovica_izracuna_po_glavnici := p_glavnica_tab(i).iznos;
               v_izracun_glavnice_rec.osnovica_izracuna_po_kamati   := 0;
-              
+
 
               v_indeksirane_glavnice_tab(v_izracun_glavnice_rec.glavnica_id) := v_izracun_glavnice_rec;
             end loop;
@@ -365,7 +365,7 @@ as
              then
                 for i in v_godina_od..v_godina_do
                 loop
-                     -- ili 01.01. godine, ili poÄ‚Â¨etak perioda
+                     -- ili 01.01. godine, ili poĂ„â€šĂ‚Â¨etak perioda
                      v_period_rec.datum_od      := greatest(v_period_datum_od, trunc(to_date(i, 'yyyy'), 'YYYY'));
 
                      -- ili kraj perioda ili zadnji dan godine ili datum obracuna
@@ -392,7 +392,7 @@ as
     is
        v_uplate_sjele_u_periodu_tab        temporal_uplate_tab_type;--ju_tipovi_pkg.uplate;
        v_uplata_index_id                   number;
-       
+
        v_idx                               number;
        v_ordered_tab                       temporal_uplate_tab_type;--ju_tipovi_pkg.uplate;
     begin
@@ -426,7 +426,7 @@ as
        end loop;
 
        output_uplate(v_uplate_sjele_u_periodu_tab);
-       
+
        if v_uplate_sjele_u_periodu_tab.count = 0
        then
            return v_uplate_sjele_u_periodu_tab;
@@ -435,14 +435,14 @@ as
            loop
                v_ordered_tab(v_uplate_sjele_u_periodu_tab(j).poredak) := v_uplate_sjele_u_periodu_tab(j);
            end loop;
-           
-           
+
+
            v_idx := v_ordered_tab.first;
-           
+
            loop
               exit when v_idx = v_ordered_tab.last or v_idx is null;
               v_idx := v_ordered_tab.next(v_idx);
-           end loop; 
+           end loop;
        end if;
 
        output_uplate(v_ordered_tab);
@@ -479,7 +479,7 @@ as
 --           return false;
 --         end if;
 
-         --dbms_output.put_line('razdoblje obracuna: '||nvl(p_nacin_obracuna_rec.uz_razdoblje_obracuna, 'nije odreÄ‚Â°eno')||' od-do: '||p_datum_od||'-'||p_datum_do);
+         --dbms_output.put_line('razdoblje obracuna: '||nvl(p_nacin_obracuna_rec.uz_razdoblje_obracuna, 'nije odreĂ„â€šĂ‚Â°eno')||' od-do: '||p_datum_od||'-'||p_datum_do);
          return
                 p_nacin_obracuna_rec.uz_razdoblje_obracuna is null
          or     (
@@ -501,7 +501,7 @@ as
 
        v_glavnica_po_ks_za_algoritam          := p_period_glavnica_ks;
 
-       -- ako se desila uplata u periodu 
+       -- ako se desila uplata u periodu
        if   p_datum_do_zbog_uplate is not null
        and  p_datum_do_zbog_uplate < v_glavnica_po_ks_za_algoritam.datum_do
        and  p_datum_do_zbog_uplate > v_glavnica_po_ks_za_algoritam.datum_od
@@ -554,7 +554,7 @@ as
 
               podjela_po_nacinu_obracuna_tab(podjela_po_nacinu_obracuna_tab.count + 1) := v_period_izracuna_rec;
 
-              -- doÄąË‡ao sam do kraja perioda izracuna glavnice
+              -- doĂ„Ä…Ă‹â€ˇao sam do kraja perioda izracuna glavnice
               exit;
            elsif
            -- 3 slucaj
@@ -704,7 +704,7 @@ function obracunaj_zateznu(
 
           glavnica_po_ksu_tab             ju_tipovi_pkg.periodi_izracuna_glavnice_tt;
           glavnica_po_ksu_nacin_obr_tab   ju_tipovi_pkg.period_nacin_izracuna_tt;
-          
+
           v_trenutna_osnovica_rec         ju_tipovi_pkg.glavnica_po_kamatnoj_stopi_rec;
 
           v_dio_obracuna_zatezne_rec      ju_tipovi_pkg.izracun_kamate_rec;
@@ -718,8 +718,8 @@ function obracunaj_zateznu(
           v_uplate_u_periodu_tab          temporal_uplate_tab_type;--ju_tipovi_pkg.uplate;
 
           v_iskoristeni_iznos_uplate      number;
-          
-  
+
+
           upl                             number;
           v_uplata_id_u_obradi            number;
           v_datum_uplate                  date;
@@ -812,8 +812,8 @@ function obracunaj_zateznu(
 --                 dbms_output.put_line('else');
                  v_dio_obracuna_zatezne_rec.ukupna_zatezna_kamata := v_dio_obracuna_zatezne_rec.ukupna_zatezna_kamata + nvl(v_dio_obracuna_zatezne_rec.zatezna_kamata, 0);
             end if;
-            
-            -- kad je uplata na zadnji dan predaje se datum od za jedan dan veći od datuma do da se ne obracunava zatezna, no da se izracuna zavrsno stanje
+
+            -- kad je uplata na zadnji dan predaje se datum od za jedan dan veÄ‡i od datuma do da se ne obracunava zatezna, no da se izracuna zavrsno stanje
             if    v_dio_obracuna_zatezne_rec.datum_od > v_dio_obracuna_zatezne_rec.datum_do
             and   nvl(v_dio_obracuna_zatezne_rec.umanjenje_zbog_uplate, 0) > 0
             then
@@ -829,7 +829,7 @@ function obracunaj_zateznu(
           ------------------------------------
      begin
      ----
-     -- POCÂETAK
+     -- POCĂ‚ÂETAK
      ----
           -- vrati praznu tablicu ako nisu predani potrebni podaci
           if not predani_svi_potrebni_podaci
@@ -869,31 +869,31 @@ function obracunaj_zateznu(
 
                    output_glavnica_po_ksu(v_trenutna_osnovica_rec);
                    v_uplate_u_periodu_tab := uplate_sjele_u_periodu(v_trenutna_osnovica_rec, uplate_za_izracun_tab);
-                   
+
                    v_datum_uplate       := null;
-                   
+
                    if v_uplate_u_periodu_tab.count > 0
                    then
                        upl := v_uplate_u_periodu_tab.first;
-                       
-                       loop  
+
+                       loop
                            v_datum_uplate := v_uplate_u_periodu_tab(upl).datum_uplate;
-                           
+
                            -- avans ne cijepa razdoblje obracuna, a uplata unutar razdoblja da
                            v_trenutna_osnovica_rec.datum_do := greatest(v_datum_uplate, glavnica_po_ksu_tab(i).datum_do);
-                          
+
                            glavnica_po_ksu_nacin_obr_tab  := nacin_izracuna_kamate(v_trenutna_osnovica_rec, p_nacin_obracuna_tab, v_datum_uplate);
 
 
                            for j in 1..glavnica_po_ksu_nacin_obr_tab.count
                            loop
 
-                              if   v_uplata_id_u_obradi is not null 
+                              if   v_uplata_id_u_obradi is not null
                               and  v_uplata_id_u_obradi != upl
                               then
                                   v_dio_obracuna_zatezne_rec     := zatezna_za_period(glavnica_po_ksu_nacin_obr_tab(j), v_prethodno_razdoblje_iznosi_r, trenutna_osnovica_za_glavnicu(glavnica_po_ksu_nacin_obr_tab(j).glavnica_id), trenutna_osnovica_za_kamatu(glavnica_po_ksu_nacin_obr_tab(j).glavnica_id), uplate_za_izracun_tab(v_uplate_u_periodu_tab(v_uplata_id_u_obradi).uplata_id));
                                   dodaj_kamatu_u_obracun(true);
-        
+
                                   v_iskoristeni_iznos_uplate := uplata_iskoristena_u_iznosu(v_uplate_u_periodu_tab(v_uplata_id_u_obradi).uplata_id, v_dio_obracuna_zatezne_rec);
                                   osnovica_promijenjena(glavnica_po_ksu_nacin_obr_tab(j).glavnica_id, v_dio_obracuna_zatezne_rec.osnovica_izracuna_po_glavnici, v_dio_obracuna_zatezne_rec.osnovica_izracuna_po_kamati);
                               -- AVANS
@@ -902,32 +902,32 @@ function obracunaj_zateznu(
                               then
                                   v_dio_obracuna_zatezne_rec     := zatezna_za_period(glavnica_po_ksu_nacin_obr_tab(j), v_prethodno_razdoblje_iznosi_r, trenutna_osnovica_za_glavnicu(glavnica_po_ksu_nacin_obr_tab(j).glavnica_id), trenutna_osnovica_za_kamatu(glavnica_po_ksu_nacin_obr_tab(j).glavnica_id), uplate_za_izracun_tab(v_uplate_u_periodu_tab(upl).uplata_id));
                                   dodaj_kamatu_u_obracun(true);
-        
+
                                   v_iskoristeni_iznos_uplate := uplata_iskoristena_u_iznosu(v_uplate_u_periodu_tab(upl).uplata_id, v_dio_obracuna_zatezne_rec);
                                   osnovica_promijenjena(glavnica_po_ksu_nacin_obr_tab(j).glavnica_id, v_dio_obracuna_zatezne_rec.osnovica_izracuna_po_glavnici, v_dio_obracuna_zatezne_rec.osnovica_izracuna_po_kamati);
                               else
                                   v_dio_obracuna_zatezne_rec     := zatezna_za_period(glavnica_po_ksu_nacin_obr_tab(j), v_prethodno_razdoblje_iznosi_r, trenutna_osnovica_za_glavnicu(glavnica_po_ksu_nacin_obr_tab(j).glavnica_id), trenutna_osnovica_za_kamatu(glavnica_po_ksu_nacin_obr_tab(j).glavnica_id));
                                   dodaj_kamatu_u_obracun;
                               end if;
-                                   
+
                               v_prethodno_razdoblje_iznosi_r := priprema_za_sljedeci_period(v_dio_obracuna_zatezne_rec);
-                              
+
                               output_izracun_zatezne(v_dio_obracuna_zatezne_rec);
-                              
+
                           end loop;
-                          
+
                           v_trenutna_osnovica_rec.datum_od := v_datum_uplate + 1;
                           --v_trenutna_osnovica_rec.datum_od := greatest(v_datum_uplate, glavnica_po_ksu_tab(i).datum_do) + 1;
                           v_trenutna_osnovica_rec.datum_do := glavnica_po_ksu_tab(i).datum_do;
-                          
-                          
+
+
                           v_uplata_id_u_obradi := upl;
-                          
+
                           exit when upl = v_uplate_u_periodu_tab.last;
                           upl := v_uplate_u_periodu_tab.next(upl);
                        end loop;
                    end if;
-                   
+
                     -- ovaj izracun obuhvaca situacije bez uplate i situaciju kad nakon uplate jos ostaje razdoblje za izracun kamate
                     -- odredi nacin izracuna kamate (konformni ili proporcionalni) za period
                    -- >> start zadnji_dio
@@ -937,7 +937,7 @@ function obracunaj_zateznu(
                    for j in 1..glavnica_po_ksu_nacin_obr_tab.count
                    loop
                       output_nacin_obracuna(glavnica_po_ksu_nacin_obr_tab(j));
-                      
+
                       -- NIJE BILO UPLATA
                       if v_uplata_id_u_obradi is null
                       then
@@ -953,7 +953,7 @@ function obracunaj_zateznu(
                       else
                             v_dio_obracuna_zatezne_rec     := zatezna_za_period(glavnica_po_ksu_nacin_obr_tab(j), v_prethodno_razdoblje_iznosi_r, trenutna_osnovica_za_glavnicu(glavnica_po_ksu_nacin_obr_tab(j).glavnica_id), trenutna_osnovica_za_kamatu(glavnica_po_ksu_nacin_obr_tab(j).glavnica_id), uplate_za_izracun_tab(v_uplate_u_periodu_tab(v_uplata_id_u_obradi).uplata_id));
                             dodaj_kamatu_u_obracun(true);
-        
+
                             v_iskoristeni_iznos_uplate := uplata_iskoristena_u_iznosu(v_uplate_u_periodu_tab(v_uplata_id_u_obradi).uplata_id, v_dio_obracuna_zatezne_rec);
                             osnovica_promijenjena(glavnica_po_ksu_nacin_obr_tab(j).glavnica_id, v_dio_obracuna_zatezne_rec.osnovica_izracuna_po_glavnici, v_dio_obracuna_zatezne_rec.osnovica_izracuna_po_kamati);
 
@@ -965,7 +965,7 @@ function obracunaj_zateznu(
                       v_prethodno_razdoblje_iznosi_r := priprema_za_sljedeci_period(v_dio_obracuna_zatezne_rec);
                    end loop;
                    -- >> end zadnji_dio
-                    
+
                    v_uplata_id_u_obradi := null;
               end loop;
 
@@ -1008,8 +1008,8 @@ function obracunaj_zateznu(
 --          v_uplate_u_periodu_tab          temporal_uplate_tab_type;--ju_tipovi_pkg.uplate;
 --
 --          v_iskoristeni_iznos_uplate      number;
---          
---  
+--
+--
 --          upl                             number;
 --          v_prije_uplate_rec              ju_tipovi_pkg.glavnica_po_ks_tip_obracun_rec;
 --          v_poslije_uplate_rec            ju_tipovi_pkg.glavnica_po_ks_tip_obracun_rec;
@@ -1111,7 +1111,7 @@ function obracunaj_zateznu(
 --          end;
 --     begin
 --     ----
---     -- POCÂETAK
+--     -- POCĂ‚ÂETAK
 --     ----
 --          -- vrati praznu tablicu ako nisu predani potrebni podaci
 --          if not predani_svi_potrebni_podaci
@@ -1177,7 +1177,7 @@ function obracunaj_zateznu(
 --                   else
 --                          -- odredi nacin izracuna kamate (konformni ili proporcionalni) za period
 --                        glavnica_po_ksu_nacin_obr_tab  := nacin_izracuna_kamate(glavnica_po_ksu_tab(i), p_nacin_obracuna_tab);
---                        
+--
 --                        <<glavnica_po_ks>>
 --                        for j in 1..glavnica_po_ksu_nacin_obr_tab.count
 --                        loop
@@ -1209,7 +1209,7 @@ function obracunaj_zateznu(
 --
 --                                  -- obraun ovog razdoblja je podloga za sljedeci period
 --                                  v_prethodno_razdoblje_iznosi_r := priprema_za_sljedeci_period(v_dio_obracuna_zatezne_rec);
---                                  
+--
 --                                  exit when upl = v_uplate_u_periodu_tab.last or upl is null;
 --                                  upl := v_uplate_u_periodu_tab.next(upl);
 --
@@ -1218,17 +1218,17 @@ function obracunaj_zateznu(
 --                              -- uplata sjela u razdoblju obracuna glavnice
 --                              elsif v_uplate_u_periodu_tab(upl).datum_uplate between glavnica_po_ksu_nacin_obr_tab(j).datum_od + 1 and glavnica_po_ksu_nacin_obr_tab(j).datum_do
 --                              then
---                                       
+--
 --                                      v_prije_uplate_rec            := glavnica_po_ksu_nacin_obr_tab(j);
 --                                      v_prije_uplate_rec.datum_do   := v_uplate_u_periodu_tab(upl).datum_uplate - 1;
 --                                      if v_datum_uplate is not null
 --                                      then
---                                         v_prije_uplate_rec.datum_od := greatest(v_datum_uplate, glavnica_po_ksu_nacin_obr_tab(j).datum_od);   
+--                                         v_prije_uplate_rec.datum_od := greatest(v_datum_uplate, glavnica_po_ksu_nacin_obr_tab(j).datum_od);
 --                                      end if;
--- 
+--
 --                                      v_poslije_uplate_rec          := glavnica_po_ksu_nacin_obr_tab(j);
 --                                      v_poslije_uplate_rec.datum_od := v_uplate_u_periodu_tab(upl).datum_uplate;
---                                      
+--
 --                                      v_datum_uplate                := v_uplate_u_periodu_tab(upl).datum_uplate;
 --
 --                                      -- 1 PRIJE UPLATE
@@ -1244,16 +1244,16 @@ function obracunaj_zateznu(
 --                                        v_dio_obracuna_zatezne_rec     := zatezna_za_period(v_prije_uplate_rec, v_prethodno_razdoblje_iznosi_r, trenutna_osnovica_za_glavnicu(glavnica_po_ksu_nacin_obr_tab(j).glavnica_id), trenutna_osnovica_za_kamatu(glavnica_po_ksu_nacin_obr_tab(j).glavnica_id));
 --                                        dodaj_dio_u_obracun;
 --                                      end if;
---                                      
---                                      
+--
+--
 --                                      output_izracun_zatezne(v_dio_obracuna_zatezne_rec);
---                                      
+--
 --                                      -- obraun ovog razdoblja je podloga za sljedeci period
 --                                      v_prethodno_razdoblje_iznosi_r := priprema_za_sljedeci_period(v_dio_obracuna_zatezne_rec);
 --
 --                                      -- pri uplati se racuna kompletna kamata za doticnu glavnicu do tad
 --                                      v_prethodno_razdoblje_iznosi_r.kamata_prethodnog_razdoblja := suma_kamate(obracun_zatezne_kamate_tab, v_dio_obracuna_zatezne_rec.glavnica_id);
---                                      
+--
 --                                      v_uplata_id_u_obradi          := upl;
 --                                      /*
 --                                      -- 2 POSLIJE UPLATE
@@ -1272,7 +1272,7 @@ function obracunaj_zateznu(
 --                                      v_prethodno_razdoblje_iznosi_r := priprema_za_sljedeci_period(v_dio_obracuna_zatezne_rec);
 --                                      */
 --                              end if;
---                           
+--
 --                           exit when upl = v_uplate_u_periodu_tab.last or upl is null;
 --                           upl := v_uplate_u_periodu_tab.next(upl);
 --
@@ -1314,7 +1314,7 @@ function obracunaj_zateznu(
 
 
 -------------------------------------------------------------------------------
-    
+
 -------------------------------------------------------------------------------
      function suma_glavnice_old(
        p_uplate_tab                in    ju_tipovi_pkg.glavnice
@@ -1343,7 +1343,7 @@ function obracunaj_zateznu(
         index by pls_integer;
 
         osnovica_po_glavnici_tab   osnovica_po_glavnici_tab_type ;
-        
+
         glavnica_id     pls_integer;
      begin
         for i in 1..p_obracun_zatezne_tab.count
@@ -1359,12 +1359,12 @@ function obracunaj_zateznu(
         then
           return 0;
         end if;
-        
+
         glavnica_id := osnovica_po_glavnici_tab.first;
-             
+
         loop
            v_suma_glavnice := nvl(v_suma_glavnice, 0) + nvl(osnovica_po_glavnici_tab(glavnica_id), 0);
-          
+
            exit when glavnica_id = osnovica_po_glavnici_tab.last;
            glavnica_id := osnovica_po_glavnici_tab.next(glavnica_id);
         end loop;
@@ -1411,7 +1411,7 @@ function obracunaj_zateznu(
         index by pls_integer;
 
         zatezna_po_glavnici_tab zatezna_po_glavnici_tab_type ;
-        
+
         glavnica_id     pls_integer;
      begin
         for i in 1..p_obracun_zatezne_tab.count
@@ -1426,16 +1426,16 @@ function obracunaj_zateznu(
         then
           return 0;
         end if;
-        
+
         glavnica_id := zatezna_po_glavnici_tab.first;
-             
+
         loop
            v_suma_kamate := nvl(v_suma_kamate, 0) + nvl(zatezna_po_glavnici_tab(glavnica_id), 0);
-          
+
            exit when glavnica_id = zatezna_po_glavnici_tab.last;
            glavnica_id := zatezna_po_glavnici_tab.next(glavnica_id);
         end loop;
-         
+
 --        for glavnica_id in 1..zatezna_po_glavnici_tab.count
 --        loop
 --          v_suma_kamate := nvl(v_suma_kamate, 0) + nvl(zatezna_po_glavnici_tab(glavnica_id), 0);

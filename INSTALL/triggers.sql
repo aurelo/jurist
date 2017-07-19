@@ -66,8 +66,17 @@ begin
     select JU_DEFINICIJA_TIPA_SEQ.nextval into :NEW."ID" from sys.dual; 
   end if; 
 end; 
-
 /
 ALTER TRIGGER  JU_DEFINICIJA_TIPA_OBRACUNA_BI ENABLE
 /
-
+CREATE OR REPLACE TRIGGER ju_podaci_osobe_bir
+  before insert on Ju_Podaci_Osobe
+  for each row
+begin
+  if :NEW."ID" is null then
+    select ju_users_seq.nextval into :NEW."ID" from sys.dual;
+  end if;
+end;
+/
+alter trigger ju_podaci_osobe_bir enable
+/

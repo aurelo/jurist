@@ -39,5 +39,10 @@ as
       p_obracun_id        in     ju_izracun_zatezne.id%type
    )
    return number;
+-------------------------------------------------------------------------------
+   procedure obrisi_spremljeni_izracun(
+     p_izracun_id         in     ju_izracun_zatezne.id%type
+   )
+   ;
 end;
 /

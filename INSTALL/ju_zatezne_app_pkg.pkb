@@ -157,5 +157,17 @@ as
 
       return v_cnt;
    end;
+-------------------------------------------------------------------------------
+   procedure obrisi_spremljeni_izracun(
+     p_izracun_id         in     ju_izracun_zatezne.id%type
+   )
+   is
+   begin
+     delete from ju_rezultat_izracuna ri where ri.ize_id = p_izracun_id;
+     delete from ju_glavnice g where g.ize_id = p_izracun_id;
+     delete from ju_uplate u where u.ize_id = p_izracun_id;
+     delete from ju_izracun_zatezne where id = p_izracun_id;
+     commit;
+   end;
 end;
 /

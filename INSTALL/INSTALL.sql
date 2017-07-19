@@ -2,6 +2,7 @@
 @@tables_izracun_zatezne.sql
 @@sequences.sql
 @@views.sql
+@@views_session.sql
 
 -- package specification
 @@ju_tipovi_pkg.pks
@@ -21,8 +22,6 @@
 @@ju_session_izracun_pkg.pks
 @@ju_test_pkg.pkb
 @@ju_integration_test_pkg.pkb
-
-@@views_session.sql
 
 
 -- triggers
