@@ -19,7 +19,7 @@
 @@ju_obracun_kamate_pkg.pkb
 @@ju_adapter_pkg.pkb
 @@ju_zatezne_app_pkg.pkb
-@@ju_session_izracun_pkg.pks
+@@ju_session_izracun_pkg.pkb
 @@ju_test_pkg.pkb
 @@ju_integration_test_pkg.pkb
 

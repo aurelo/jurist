@@ -153,6 +153,7 @@ as
        p_user_id             in      ju_users.id%type
       ,p_vjerovnik_id        in      number
       ,p_duznik_id           in      number
+      ,p_opis                in      varchar2
     )
     return number
     is
@@ -182,7 +183,7 @@ as
       return ju_zatezne_app_pkg.get_izracun_id(p_user_id         => p_user_id,
                                                p_tip_izracuna_id => v_session_header_rec.tip_izracuna_id,
                                                p_datum_izracuna  => v_session_header_rec.datum_izracuna,
-                                               p_opis            => v_session_header_rec.opis_izracuna,
+                                               p_opis            => nvl(p_opis, v_session_header_rec.opis_izracuna),
                                                p_vjerovnik_id    => p_vjerovnik_id,
                                                p_duznik_id       => p_duznik_id);
     end;
@@ -695,11 +696,12 @@ as
     p_user_id         in    ju_users.id%type
    ,p_vjerovnik_id    in    number
    ,p_duznik_id       in    number
+   ,p_opis            in    varchar2
     )
     is
       v_izracun_id          ju_izracun_zatezne.id%type;
     begin
-      v_izracun_id := insert_header_izracuna(p_user_id, p_vjerovnik_id, p_duznik_id);
+      v_izracun_id := insert_header_izracuna(p_user_id, p_vjerovnik_id, p_duznik_id, p_opis);
       
       if v_izracun_id is null
       then
