@@ -25,9 +25,9 @@ as
    DULJE_OD_GODINE constant RAZDOBLJE_OBRACUNA_KAMATE := '>G';
     -- NACIN_OBRACUNA_REC
     -- nacin obracua koji se primjenjuje za razdoblje
-    -- METODA IZRAĂ‰â€˘NA:
+    -- METODA IZRACUNA:
     -- # ili proporcionalna ili konformna
-    -- RAZDOBLJE OBRAĂ‰â€˘NA
+    -- RAZDOBLJE OBRACUNA
     -- # veci od godine dana, manje od godine dana ili svejedno
     type nacin_obracuna_rec  is record(
       metoda_izracuna_kamate     NACIN_OBRACUNA_KAMATE
@@ -48,13 +48,14 @@ as
     )
     ;
 -------------------------------------------------------------------------------
-    type glavnice is table of transakcija_rec
+    type dugovi is table of transakcija_rec
     index by binary_integer;
+
     type uplate   is table of transakcija_rec
     index by binary_integer;
 -------------------------------------------------------------------------------
-    type glavnica_po_kamatnoj_stopi_rec is record(
-      glavnica_id                       number
+    type dug_po_kamatnoj_stopi_rec is record(
+      dug_id                            number
      ,iznos                             number
      ,datum_od                          date
      ,datum_do                          date
@@ -62,11 +63,11 @@ as
      ,kamatna_stopa                     number
     );
 -------------------------------------------------------------------------------
-    type periodi_izracuna_glavnice_tt is table of glavnica_po_kamatnoj_stopi_rec
+    type periodi_izracuna_duga_tt is table of dug_po_kamatnoj_stopi_rec
     index by binary_integer;
 -------------------------------------------------------------------------------
-    type glavnica_po_ks_tip_obracun_rec is record (
-      glavnica_id                       number
+    type dug_po_ks_tip_obracun_rec is record (
+      dug_id                            number
      ,iznos                             number
      ,datum_od                          date
      ,datum_do                          date
@@ -75,17 +76,17 @@ as
      ,nacin_obracuna                    NACIN_OBRACUNA_KAMATE
     );
 -------------------------------------------------------------------------------
-    type period_nacin_izracuna_tt is table of glavnica_po_ks_tip_obracun_rec
+    type period_nacin_izracuna_tt is table of dug_po_ks_tip_obracun_rec
     index by binary_integer;
 -------------------------------------------------------------------------------
     type izracun_kamate_rec is record(
-       glavnica_id                      number
+       dug_id                           number
       ,uplata_id                        number
       ,uplata_na_zadnji_dan_YN          varchar2(1)
       ,osnovica                         number
       ,kamata_prethodnog_razdoblja      number
       ,umanjenje_zbog_uplate            number
-      ,osnovica_izracuna_po_glavnici    number
+      ,osnovica_izracuna_po_dugu        number
       ,osnovica_izracuna_po_kamati      number
       ,datum_od                         date
       ,datum_do                         date

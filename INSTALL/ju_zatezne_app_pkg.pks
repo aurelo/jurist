@@ -19,24 +19,24 @@ as
     return   ju_izracun_zatezne.id%type
     ;
 -------------------------------------------------------------------------------
-    function get_obracun_data(
-      p_obracun_id        in     ju_izracun_zatezne.id%type
+    function get_izracun_data(
+      p_izracun_id        in     ju_izracun_zatezne.id%type
     )
     return ju_izracun_zatezne%rowtype;
 -------------------------------------------------------------------------------
     procedure clear_tables;
 -------------------------------------------------------------------------------
     procedure izracun_zatezne(
-      p_obracun_id        in     ju_izracun_zatezne.id%type
+      p_izracun_id        in     ju_izracun_zatezne.id%type
     );
 -------------------------------------------------------------------------------
-   function broj_glavnica_za_izracun(
-      p_obracun_id        in     ju_izracun_zatezne.id%type
+   function broj_dugova_za_izracun(
+      p_izracun_id        in     ju_izracun_zatezne.id%type
    )
    return number;
 -------------------------------------------------------------------------------
    function broj_dijelova_izracuna(
-      p_obracun_id        in     ju_izracun_zatezne.id%type
+      p_izracun_id        in     ju_izracun_zatezne.id%type
    )
    return number;
 -------------------------------------------------------------------------------

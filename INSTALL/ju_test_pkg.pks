@@ -8,19 +8,17 @@ as
     -- vise malih rata iz 2016-te i 2017-te
     ---
 -------------------------------------------------------------------------------
-    function glavnice_primjer
-    return ju_tipovi_pkg.glavnice;
+    function dugovi_primjer
+    return ju_tipovi_pkg.dugovi;
 -------------------------------------------------------------------------------
 -- TESTOVI
 -------------------------------------------------------------------------------
 -------------------------------------------
 -- TEST INTERNE STRUKTURE
 -------------------------------------------
-    procedure t_podjela_glavnice_po_ks;
 -------------------------------------------
 -- KRAJ TEST INTERNE STRUKTURE
 -------------------------------------------
- --  procedure t_proporcionalna_rata_fze;
 -------------------------------------------------------------------------------
     function t_prop_fze_rate
     return boolean;
@@ -29,7 +27,7 @@ as
 -------------------------------------------------------------------------------
 -- testovi za jednu glavnicu
 -------------------------------------------------------------------------------
-    procedure t_podjelu_glavnice_po_ks;
+    procedure t_podjela_duga_po_ks;
     procedure t_zateznu_za_jednu_glavnicu;
 -------------------------------------------------------------------------------
 -- testovi za odredivanje nacina izracuna kamate

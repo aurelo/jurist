@@ -23,6 +23,7 @@ alter table ju_izracun_zatezne disable constraint JU_IZE_TIA_FK;
 prompt Disabling foreign key constraint for JU_PODACI_OSOBE
 alter table JU_PODACI_OSOBE disable constraint JU_PODACI_OSOBE_TOA_FK;
 alter table JU_PODACI_OSOBE disable constraint JU_PODACI_OSOBE_JUS_FK;
+alter table JU_TRANSAKCIJE disable constraint JU_TNE_VTA_FK;
 prompt Truncating JU_USERS...
 truncate table ju_users
 /
@@ -43,6 +44,9 @@ truncate table JU_ZAKONI
 /
 prompt Truncating JU_TIPOVI_OSOBA...
 truncate table JU_TIPOVI_OSOBA
+/
+prompt Truncating JU_VRSTE_TRANSAKCIJA...
+truncate table ju_vrste_transakcija
 /
 prompt Loading JU_USERS...
 insert into ju_users (
@@ -174,6 +178,25 @@ values (2, 'P', '>G', to_date('30-05-1994', 'dd-mm-yyyy'), to_date('19-07-2004',
 insert into JU_NACINI_OBRACUNA (id, metoda_obracuna, duljina_razdoblja, datum_od, datum_do)
 values (3, 'P', null, to_date('20-07-2004', 'dd-mm-yyyy'), null);
 commit;
+prompt Loading JU_VRSTE_TRANSAKCIJA...
+Insert into JU_VRSTE_TRANSAKCIJA
+   (ID, NAZIV, STRANA, SORT_DATUMA)
+ Values
+   (1, 'GLAVNICA', 'D', 'ASC');
+Insert into JU_VRSTE_TRANSAKCIJA
+   (ID, NAZIV, STRANA, PRIORITETNA, SORT_DATUMA)
+ Values
+   (2, 'OVRHA', 'D', 'Y', 'DESC');
+Insert into JU_VRSTE_TRANSAKCIJA
+   (ID, NAZIV, STRANA, PRIORITETNA, SORT_DATUMA)
+ Values
+   (3, 'TROŠAK SPORA', 'D', 'Y', 'DESC');
+Insert into JU_VRSTE_TRANSAKCIJA
+   (ID, NAZIV, STRANA, SORT_DATUMA)
+ Values
+   (4, 'UPLATA', 'P', 'ASC');
+COMMIT;
+
 
 prompt Enabling foreign key constraints for JU_TIPOVI_IZRACUNA...
 alter table JU_TIPOVI_IZRACUNA enable constraint JU_TIA_TOA_FK;
@@ -198,6 +221,7 @@ alter table JU_NACINI_OBRACUNA enable all triggers;
 alter table ju_izracun_zatezne enable constraint JU_IZE_TIA_FK;
 alter table JU_PODACI_OSOBE enable constraint JU_PODACI_OSOBE_TOA_FK;
 alter table JU_PODACI_OSOBE enable constraint JU_PODACI_OSOBE_JUS_FK;
+alter table JU_TRANSAKCIJE enable constraint JU_TNE_VTA_FK;
 set feedback on
 set define on
 prompt Done.

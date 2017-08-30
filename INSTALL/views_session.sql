@@ -12,26 +12,26 @@ from      apex_collections acs
 where     acs.collection_name = 'ZATEZNE_IZRACUN'--ju_session_izracun_pkg.ZATEZNE_IZRACUN
 /
 prompt
-prompt Creating view JU_SESSION_GLAVNICE_V
-prompt ===================================
+prompt Creating view JU_SESSION_DUGOVI_V
+prompt =================================
 prompt
-create or replace view ju_session_glavnice_v
-as
-select    acs.seq_id 
+create or replace view ju_session_dugovi_v as
+select    acs.seq_id
 ,         acs.n001 iznos
 ,         acs.d001 datum_dospijeca
+,         acs.n002 vrsta_duga_id
 from      apex_collections acs
-where     acs.collection_name = 'GLAVNICE'--ju_session_izracun_pkg.GLAVNICE
+where     acs.collection_name = 'DUGOVI'
 /
 prompt
 prompt Creating view JU_SESSION_UPLATE_V
 prompt =================================
 prompt
-create or replace view ju_session_uplate_v
-as
-select    acs.seq_id 
+create or replace view ju_session_uplate_v as
+select    acs.seq_id
 ,         acs.n001 iznos
 ,         acs.d001 datum_uplate
+,         acs.n002 vrsta_transakcije_id
 from      apex_collections acs
 where     acs.collection_name = 'UPLATE'--ju_session_izracun_pkg.UPLATE
 /
@@ -39,16 +39,15 @@ prompt
 prompt Creating view JU_SESSION_REZULTAT_IZRACUNA_V
 prompt ============================================
 prompt
-create or replace view ju_session_rezultat_izracuna_v
-as
+create or replace view ju_session_rezultat_izracuna_v as
 select    acs.seq_id
-,         acs.n001 glavnica_id
+,         acs.n001 dug_id
 ,         acs.n002 uplata_id
-,         acs.c001 uplata_na_zadnji_dan_YN 
+,         acs.c001 uplata_na_zadnji_dan_YN
 ,         acs.n003 osnovica
 ,         acs.n004 kamata_prethodnog_razdoblja
 ,         acs.n005 umanjenje_zbog_uplate
-,         to_number(acs.c006) / 100 osnovica_izracuna_po_glavnici
+,         to_number(acs.c006) / 100 osnovica_izracuna_po_dugu
 ,         to_number(acs.c007) / 100 osnovica_izracuna_po_kamati
 ,         acs.d001 datum_od
 ,         acs.d002 datum_do
@@ -56,8 +55,8 @@ select    acs.seq_id
 ,         acs.c009 kamatna_stopa_id
 ,         to_number(acs.c010) /100 kamatna_stopa
 ,         acs.c002 nacin_izracuna_kamate
-,         to_number(acs.c011) /100 zatezna_kamata                   
-,         to_number(acs.c012) /100 ukupna_zatezna_kamata            
+,         to_number(acs.c011) /100 zatezna_kamata
+,         to_number(acs.c012) /100 ukupna_zatezna_kamata
 from      apex_collections acs
 where     acs.collection_name = 'ZATEZNE_REZULTAT'--ju_session_izracun_pkg.ZATEZNE_REZULTAT
 /
@@ -65,25 +64,15 @@ prompt
 prompt Creating view JU_SESSION_REKAPITULACIJA_V
 prompt =========================================
 prompt
-create or replace view ju_session_rekapitulacija_v
+create or replace view ju_session_rekapitulacija_v as
+with
+ dugovi as
 (
-         broj_glavnica
-,        suma_glavnica
-,        broj_uplata
-,        iznos_uplata
-,        glavnice_dug
-,        kamate_dug
-,        ukupan_dug
+select    count(*) broj_dugova
+,         nvl(sum(sd.iznos), 0) suma_dugova
+from      ju_session_dugovi_v sd
 )
-as
- with 
- glavnice as
-(
-select    count(*) broj_glavnica
-,         nvl(sum(sg.iznos), 0) suma_glavnica
-from      ju_session_glavnice_v sg
-)
-,uplate as 
+,uplate as
 (
  select   count(*) broj_uplata
  ,        nvl(sum(su.iznos), 0) iznos_uplata
@@ -91,23 +80,23 @@ from      ju_session_glavnice_v sg
 )
 ,dug as
 (
- select   nvl(sum(ri.osnovica_izracuna_po_glavnici), 0) glavnice_dug
+ select   nvl(sum(ri.osnovica_izracuna_po_dugu), 0) dugovi_dug
  ,        nvl(sum(ri.osnovica_izracuna_po_kamati), 0) kamate_dug
  from     ju_session_rezultat_izracuna_v ri
  where    ri.seq_id in (
    select   max(ri_last.seq_id)
    from     ju_session_rezultat_izracuna_v ri_last
-   where    ri_last.glavnica_id = ri.glavnica_id
+   where    ri_last.dug_id = ri.dug_id
  )
 )
-select   broj_glavnica
-,        suma_glavnica
+select   broj_dugova
+,        suma_dugova
 ,        broj_uplata
 ,        iznos_uplata
-,        glavnice_dug
+,        dugovi_dug
 ,        kamate_dug
-,        glavnice_dug + kamate_dug ukupan_dug
-from     glavnice
+,        dugovi_dug + kamate_dug ukupan_dug
+from     dugovi
 ,        uplate
 ,        dug
 /

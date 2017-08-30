@@ -31,101 +31,101 @@ as
     end;
 
 
-    function glavnice_primjer
-    return ju_tipovi_pkg.glavnice
+    function dugovi_primjer
+    return ju_tipovi_pkg.dugovi
     is
-        v_glavnica_rec    ju_tipovi_pkg.transakcija_rec;
-        v_glavnica_tab    ju_tipovi_pkg.glavnice;
+        v_dug_rec       ju_tipovi_pkg.transakcija_rec;
+        v_dugovi_tab    ju_tipovi_pkg.dugovi;
     begin
-----        v_glavnica_rec.opis := C_GLAVNICA_TIP;
+----        v_dug_rec.opis := C_GLAVNICA_TIP;
 
-        v_glavnica_rec.id    := 1;
-        v_glavnica_rec.iznos := 185.78;
-        v_glavnica_rec.datum := to_date('17.02.2016', 'dd.mm.yyyy');
-        v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+        v_dug_rec.id    := 1;
+        v_dug_rec.iznos := 185.78;
+        v_dug_rec.datum := to_date('17.02.2016', 'dd.mm.yyyy');
+        v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
-        v_glavnica_rec.id    := 2;
-        v_glavnica_rec.iznos := 45.89;
-        v_glavnica_rec.datum := to_date('24.03.2016', 'dd.mm.yyyy');
-        v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+        v_dug_rec.id    := 2;
+        v_dug_rec.iznos := 45.89;
+        v_dug_rec.datum := to_date('24.03.2016', 'dd.mm.yyyy');
+        v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
-        v_glavnica_rec.id    := 3;
-        v_glavnica_rec.iznos := 176.71;
-        v_glavnica_rec.datum := to_date('24.03.2016', 'dd.mm.yyyy');
-        v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+        v_dug_rec.id    := 3;
+        v_dug_rec.iznos := 176.71;
+        v_dug_rec.datum := to_date('24.03.2016', 'dd.mm.yyyy');
+        v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
-        v_glavnica_rec.id    := 4;
-        v_glavnica_rec.iznos := 176.71;
-        v_glavnica_rec.datum := to_date('17.04.2016', 'dd.mm.yyyy');
-        v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+        v_dug_rec.id    := 4;
+        v_dug_rec.iznos := 176.71;
+        v_dug_rec.datum := to_date('17.04.2016', 'dd.mm.yyyy');
+        v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
-        v_glavnica_rec.id    := 5;
-        v_glavnica_rec.iznos := 176.71;
-        v_glavnica_rec.datum := to_date('18.05.2016', 'dd.mm.yyyy');
-        v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+        v_dug_rec.id    := 5;
+        v_dug_rec.iznos := 176.71;
+        v_dug_rec.datum := to_date('18.05.2016', 'dd.mm.yyyy');
+        v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
-        v_glavnica_rec.id    := 6;
-        v_glavnica_rec.iznos := 176.71;
-        v_glavnica_rec.datum := to_date('17.06.2016', 'dd.mm.yyyy');
-        v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+        v_dug_rec.id    := 6;
+        v_dug_rec.iznos := 176.71;
+        v_dug_rec.datum := to_date('17.06.2016', 'dd.mm.yyyy');
+        v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
-        v_glavnica_rec.id    := 7;
-        v_glavnica_rec.iznos := 176.71;
-        v_glavnica_rec.datum := to_date('17.07.2016', 'dd.mm.yyyy');
-        v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+        v_dug_rec.id    := 7;
+        v_dug_rec.iznos := 176.71;
+        v_dug_rec.datum := to_date('17.07.2016', 'dd.mm.yyyy');
+        v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
-        v_glavnica_rec.id    := 8;
-        v_glavnica_rec.iznos := 176.71;
-        v_glavnica_rec.datum := to_date('18.08.2016', 'dd.mm.yyyy');
-        v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+        v_dug_rec.id    := 8;
+        v_dug_rec.iznos := 176.71;
+        v_dug_rec.datum := to_date('18.08.2016', 'dd.mm.yyyy');
+        v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
-        v_glavnica_rec.id    := 9;
-        v_glavnica_rec.iznos := 1059.95;
-        v_glavnica_rec.datum := to_date('23.09.2016', 'dd.mm.yyyy');
-        v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+        v_dug_rec.id    := 9;
+        v_dug_rec.iznos := 1059.95;
+        v_dug_rec.datum := to_date('23.09.2016', 'dd.mm.yyyy');
+        v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
-        v_glavnica_rec.id    := 10;
-        v_glavnica_rec.iznos := 211.94;
-        v_glavnica_rec.datum := to_date('23.09.2016', 'dd.mm.yyyy');
-        v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+        v_dug_rec.id    := 10;
+        v_dug_rec.iznos := 211.94;
+        v_dug_rec.datum := to_date('23.09.2016', 'dd.mm.yyyy');
+        v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
-        v_glavnica_rec.id    := 11;
-        v_glavnica_rec.iznos := 211.94;
-        v_glavnica_rec.datum := to_date('17.10.2016', 'dd.mm.yyyy');
-        v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+        v_dug_rec.id    := 11;
+        v_dug_rec.iznos := 211.94;
+        v_dug_rec.datum := to_date('17.10.2016', 'dd.mm.yyyy');
+        v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
-        v_glavnica_rec.id    := 12;
-        v_glavnica_rec.iznos := 211.94;
-        v_glavnica_rec.datum := to_date('17.11.2016', 'dd.mm.yyyy');
-        v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+        v_dug_rec.id    := 12;
+        v_dug_rec.iznos := 211.94;
+        v_dug_rec.datum := to_date('17.11.2016', 'dd.mm.yyyy');
+        v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
-        v_glavnica_rec.id    := 13;
-        v_glavnica_rec.iznos := 677.54;
-        v_glavnica_rec.datum := to_date('11.12.2016', 'dd.mm.yyyy');
-        v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
-
-
-        v_glavnica_rec.id    := 14;
-        v_glavnica_rec.iznos := 100;
-        v_glavnica_rec.datum := to_date('27.02.2017', 'dd.mm.yyyy');
-        v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
-
-        v_glavnica_rec.id    := 15;
-        v_glavnica_rec.iznos := 3.27;
-        v_glavnica_rec.datum := to_date('23.09.2016', 'dd.mm.yyyy');
-        v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+        v_dug_rec.id    := 13;
+        v_dug_rec.iznos := 677.54;
+        v_dug_rec.datum := to_date('11.12.2016', 'dd.mm.yyyy');
+        v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
 
-        return v_glavnica_tab;
+        v_dug_rec.id    := 14;
+        v_dug_rec.iznos := 100;
+        v_dug_rec.datum := to_date('27.02.2017', 'dd.mm.yyyy');
+        v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
+
+        v_dug_rec.id    := 15;
+        v_dug_rec.iznos := 3.27;
+        v_dug_rec.datum := to_date('23.09.2016', 'dd.mm.yyyy');
+        v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
+
+
+        return v_dugovi_tab;
 
     end;
 -------------------------------------------------------------------------------
     function primjer_prve_glavnice
-    return ju_tipovi_pkg.glavnice
+    return ju_tipovi_pkg.dugovi
     is
-       v_rata_tab   ju_tipovi_pkg.glavnice;
+       v_rata_tab   ju_tipovi_pkg.dugovi;
     begin
-       v_rata_tab(1) :=  glavnice_primjer()(1);
+       v_rata_tab(1) :=  dugovi_primjer()(1);
 
        return v_rata_tab;
     end;
@@ -153,7 +153,7 @@ as
 
        v_izracun_kamatne_stope_tab := ju_ukamacivanje_engine_pkg.proporcionalni_obracun(v_naplata_dugovanja_tab, ju_konkretno_pkg.kamatne_stope_za_fizicke_osobe);
 
-       assert(v_izracun_kamatne_stope_tab.count = 3, 'Ocekujem tri razdoblja ukamaĂ¦ivanja, a dobio: '||v_izracun_kamatne_stope_tab.count);
+       assert(v_izracun_kamatne_stope_tab.count = 3, 'Ocekujem tri razdoblja ukamaÄ‚Â¦ivanja, a dobio: '||v_izracun_kamatne_stope_tab.count);
 
        -- provjeri rate obracuna
        v_prvi_dio_obracuna    := v_izracun_kamatne_stope_tab(1);
@@ -186,11 +186,6 @@ as
 -------------------------------------------
 -- TEST INTERNE STRUKTURE
 -------------------------------------------
-    procedure t_podjela_glavnice_po_ks
-    is
-    begin
-      null;
-    end;
 -------------------------------------------
 -- KRAJ TEST INTERNE STRUKTURE
 -------------------------------------------
@@ -202,7 +197,7 @@ as
     is
       v_rata     ju_tipovi_pkg.transakcija_rec;
     begin
-      v_rata := glavnice_primjer()(1);
+      v_rata := dugovi_primjer()(1);
 
       return false;
     end;
@@ -264,16 +259,16 @@ as
     end;
 
 -------------------------------------------------------------------------------
-    procedure t_podjelu_glavnice_po_ks
+    procedure t_podjela_duga_po_ks
     is
-         v_period_tt  ju_tipovi_pkg.periodi_izracuna_glavnice_tt;
+         v_period_tt          ju_tipovi_pkg.periodi_izracuna_duga_tt;
 
          v_dug_rec            ju_tipovi_pkg.transakcija_rec;
     begin
          v_period_tt :=
-         ju_obracun_kamate_pkg.podjela_glavnice_po_ksu(p_glavnica          => glavnice_primjer()(1),
-                                                       p_kamatne_stope_tab => ju_model_pkg.kamatne_stope_za_fizicke,
-                                                       p_datum_obracuna    => to_date('10.04.2017', 'dd.mm.yyyy'));
+         ju_obracun_kamate_pkg.podjela_duga_po_ksu(p_dug               => dugovi_primjer()(1),
+                                                   p_kamatne_stope_tab => ju_model_pkg.kamatne_stope_za_fizicke,
+                                                   p_datum_obracuna    => to_date('10.04.2017', 'dd.mm.yyyy'));
 
          assert(v_period_tt.count = 3, 'Neispravno podijeljena jedna rata po propisanim kamatnim stopama');
 
@@ -298,7 +293,7 @@ as
          v_dug_rec.datum := to_date('01.05.2002', 'dd.mm.yyyy');
 
          v_period_tt :=
-         ju_obracun_kamate_pkg.podjela_glavnice_po_ksu(p_glavnica          => v_dug_rec,
+         ju_obracun_kamate_pkg.podjela_duga_po_ksu(p_dug          => v_dug_rec,
                                                        p_kamatne_stope_tab => ju_model_pkg.kamatne_stope_za_fizicke,
                                                        p_datum_obracuna    => to_date('05.04.2004', 'dd.mm.yyyy'));
 
@@ -328,13 +323,13 @@ as
     end;
 
 -------------------------------------------------------------------------------
--- testovi za odreĂ°ivanje nacina izracuna kamate
+-- testovi za odreÄ‚Â°ivanje nacina izracuna kamate
     procedure t_odredivanje_nacina_izracuna
     is
-       v_rata                       ju_tipovi_pkg.glavnica_po_kamatnoj_stopi_rec;
+       v_rata                       ju_tipovi_pkg.dug_po_kamatnoj_stopi_rec;
        v_nacin_obracuna_kamate_tab  ju_tipovi_pkg.period_nacin_izracuna_tt;
     begin
-      v_rata.glavnica_id := 1;
+      v_rata.dug_id      := 1;
       v_rata.iznos       := 150;
       v_rata.datum_od    := to_date('01.05.2004', 'dd.mm.yyyy');
       v_rata.datum_do    := to_date('31.12.2004', 'dd.mm.yyyy');
@@ -355,7 +350,7 @@ as
      assert(v_nacin_obracuna_kamate_tab(2).datum_do = to_date('31.12.2004', 'dd.mm.yyyy'));
 
      -- jedan nacin obracuna
-      v_rata.glavnica_id := 1;
+      v_rata.dug_id      := 1;
       v_rata.iznos       := 150;
       v_rata.datum_od    := to_date('15.05.2016', 'dd.mm.yyyy');
       v_rata.datum_do    := to_date('04.02.2017', 'dd.mm.yyyy');
@@ -375,21 +370,21 @@ as
 
     end;
 -------------------------------------------------------------------------------
--- test za odreĂ°ivanje uplata u periodu glavnice
+-- test za odredjivanje uplata u periodu glavnice
    procedure t_uplate_unutar_glavnica
    is
-       v_glavnica_sa_periodima_r       ju_tipovi_pkg.glavnica_po_kamatnoj_stopi_rec;
+       v_dug_sa_periodima_r            ju_tipovi_pkg.dug_po_kamatnoj_stopi_rec;
        v_uplata1                       ju_tipovi_pkg.transakcija_rec;
        v_uplata2                       ju_tipovi_pkg.transakcija_rec;
 
        v_sve_uplate_tab                ju_tipovi_pkg.uplate;
        v_uplate_unutar_glavnice_tab    ju_obracun_kamate_pkg.temporal_uplate_tab_type;-- ju_tipovi_pkg.uplate;
    begin
-      v_glavnica_sa_periodima_r.glavnica_id   := 1;
-      v_glavnica_sa_periodima_r.iznos         := 150;
-      v_glavnica_sa_periodima_r.datum_od      := to_date('15.05.2016', 'dd.mm.yyyy');
-      v_glavnica_sa_periodima_r.datum_do      := to_date('12.02.2017', 'dd.mm.yyyy');
-      v_glavnica_sa_periodima_r.kamatna_stopa := 8.08;
+      v_dug_sa_periodima_r.dug_id             := 1;
+      v_dug_sa_periodima_r.iznos         := 150;
+      v_dug_sa_periodima_r.datum_od      := to_date('15.05.2016', 'dd.mm.yyyy');
+      v_dug_sa_periodima_r.datum_do      := to_date('12.02.2017', 'dd.mm.yyyy');
+      v_dug_sa_periodima_r.kamatna_stopa := 8.08;
 
 
 
@@ -407,7 +402,7 @@ as
       v_sve_uplate_tab(1) := v_uplata1;
 
       v_uplate_unutar_glavnice_tab := ju_obracun_kamate_pkg.uplate_sjele_u_periodu(
-          v_glavnica_sa_periodima_r
+          v_dug_sa_periodima_r
          ,ju_obracun_kamate_pkg.indeksiraj_uplate(v_sve_uplate_tab)
       );
 
@@ -425,7 +420,7 @@ as
       v_sve_uplate_tab(1) := v_uplata1;
 
       v_uplate_unutar_glavnice_tab := ju_obracun_kamate_pkg.uplate_sjele_u_periodu(
-          v_glavnica_sa_periodima_r
+          v_dug_sa_periodima_r
          ,ju_obracun_kamate_pkg.indeksiraj_uplate(v_sve_uplate_tab)
       );
 
@@ -440,7 +435,7 @@ as
       v_sve_uplate_tab(1) := v_uplata1;
 
       v_uplate_unutar_glavnice_tab := ju_obracun_kamate_pkg.uplate_sjele_u_periodu(
-          v_glavnica_sa_periodima_r
+          v_dug_sa_periodima_r
          ,ju_obracun_kamate_pkg.indeksiraj_uplate(v_sve_uplate_tab)
       );
 
@@ -457,14 +452,14 @@ as
       v_sve_uplate_tab(2) := v_uplata2;
 
       v_uplate_unutar_glavnice_tab := ju_obracun_kamate_pkg.uplate_sjele_u_periodu(
-          v_glavnica_sa_periodima_r
+          v_dug_sa_periodima_r
          ,ju_obracun_kamate_pkg.indeksiraj_uplate(v_sve_uplate_tab)
       );
 
       assert(v_uplate_unutar_glavnice_tab.count = 2, 'Dvije uplate na isti datum obje utjecu na glavnicu!');
 
 
-     -- dvije uplate, jedna nakon dospijeĂ¦a
+     -- dvije uplate, jedna nakon dospijeÄ‚Â¦a
       v_uplata1.datum := to_date('31.05.2016', 'dd.mm.yyyy');
       v_uplata2.datum := to_date('30.06.2017', 'dd.mm.yyyy');
 
@@ -475,7 +470,7 @@ as
       v_sve_uplate_tab(2) := v_uplata2;
 
       v_uplate_unutar_glavnice_tab := ju_obracun_kamate_pkg.uplate_sjele_u_periodu(
-          v_glavnica_sa_periodima_r
+          v_dug_sa_periodima_r
          ,ju_obracun_kamate_pkg.indeksiraj_uplate(v_sve_uplate_tab)
       );
 
@@ -524,7 +519,7 @@ as
     begin
          v_obracun_tab := ju_obracun_kamate_pkg.obracunaj_zateznu(p_kamatne_stope_tab  => ju_model_pkg.kamatne_stope_za_fizicke,
                                                                   p_nacin_obracuna_tab => ju_model_pkg.nacin_obracuna_kamate,
-                                                                  p_glavnice_tab       => primjer_prve_glavnice,
+                                                                  p_dugovi_tab         => primjer_prve_glavnice,
                                                                   p_uplate_tab         => v_nema_uplata_tab,
                                                                   p_datum_obracuna     => to_date('10.04.2017', 'dd.mm.yyyy'));
 
@@ -541,13 +536,13 @@ as
     begin
          v_obracun_tab := ju_obracun_kamate_pkg.obracunaj_zateznu(p_kamatne_stope_tab  => ju_model_pkg.kamatne_stope_za_fizicke,
                                                                   p_nacin_obracuna_tab => ju_model_pkg.nacin_obracuna_kamate,
-                                                                  p_glavnice_tab       => glavnice_primjer,
+                                                                  p_dugovi_tab         => dugovi_primjer,
                                                                   p_uplate_tab         => v_nema_uplata_tab,
                                                                   p_datum_obracuna     => to_date('10.04.2017', 'dd.mm.yyyy'));
 
          assert(v_obracun_tab.count = 35, 'Ocekujem 35 razdoblja uplate, a dobio: '||v_obracun_tab.count);
 
-         v_suma_glavnice := ju_obracun_kamate_pkg.suma_glavnice(v_obracun_tab);
+         v_suma_glavnice := ju_obracun_kamate_pkg.suma_duga(v_obracun_tab);
          v_suma_kamate   := ju_obracun_kamate_pkg.suma_kamate(v_obracun_tab);
 
          --ju_obracun_kamate_pkg.output_izracun_zatezne(v_obracun_tab);
@@ -559,7 +554,7 @@ as
    procedure t_eodvjetnik_primjer1
    is
          v_dug_rec            ju_tipovi_pkg.transakcija_rec;
-         v_glavnice_tab       ju_tipovi_pkg.glavnice;
+         v_dugovi_tab         ju_tipovi_pkg.dugovi;
 
          v_obracun_tab        ju_tipovi_pkg.izracun_kamate_tab_type;
          v_nema_uplata_tab    ju_tipovi_pkg.uplate;
@@ -573,17 +568,17 @@ as
          v_dug_rec.iznos := 150;
          v_dug_rec.datum := to_date('01.05.2002', 'dd.mm.yyyy');
 
-         v_glavnice_tab(1) := v_dug_rec;
+         v_dugovi_tab(1) := v_dug_rec;
 
          v_obracun_tab := ju_obracun_kamate_pkg.obracunaj_zateznu(p_kamatne_stope_tab  => ju_model_pkg.kamatne_stope_za_fizicke,
                                                                   p_nacin_obracuna_tab => ju_model_pkg.nacin_obracuna_kamate,
-                                                                  p_glavnice_tab       => v_glavnice_tab,
+                                                                  p_dugovi_tab         => v_dugovi_tab,
                                                                   p_uplate_tab         => v_nema_uplata_tab,
                                                                   p_datum_obracuna     => to_date('05.04.2014', 'dd.mm.yyyy'));
 
         -- assert(v_obracun_tab.count = 9, 'Ocekujem 9 razdoblja uplate, a dobio: '||v_obracun_tab.count);
 
-         v_suma_glavnice := ju_obracun_kamate_pkg.suma_glavnice(v_obracun_tab);
+         v_suma_glavnice := ju_obracun_kamate_pkg.suma_duga(v_obracun_tab);
          v_suma_kamate   := ju_obracun_kamate_pkg.suma_kamate(v_obracun_tab);
 
          --ju_obracun_kamate_pkg.output_izracun_zatezne(v_obracun_tab);
@@ -594,15 +589,15 @@ as
 
          -- prava rata
          v_izracun_rate := v_obracun_tab(1);
-         assert(v_izracun_rate.osnovica_izracuna_po_glavnici = 150);
+         assert(v_izracun_rate.osnovica_izracuna_po_dugu = 150);
          assert(v_izracun_rate.datum_od = to_date('01.05.2002', 'dd.mm.yyyy'));
          assert(v_izracun_rate.datum_do = to_date('30.06.2002', 'dd.mm.yyyy'));
          assert(v_izracun_rate.zatezna_kamata = 4.21);
 
          -- druga rata
          v_izracun_rate := v_obracun_tab(2);
-         assert(v_izracun_rate.osnovica_izracuna_po_glavnici = 150, 'Ocekujem osnovicu po glavnici 150, a dobio: '||v_izracun_rate.osnovica_izracuna_po_glavnici);
-         assert(v_izracun_rate.osnovica_izracuna_po_kamati = 4.21, 'Ocekujem osnovicu po kamati 4.21, a dobio: '||v_izracun_rate.osnovica_izracuna_po_glavnici);
+         assert(v_izracun_rate.osnovica_izracuna_po_dugu = 150, 'Ocekujem osnovicu po glavnici 150, a dobio: '||v_izracun_rate.osnovica_izracuna_po_dugu);
+         assert(v_izracun_rate.osnovica_izracuna_po_kamati = 4.21, 'Ocekujem osnovicu po kamati 4.21, a dobio: '||v_izracun_rate.osnovica_izracuna_po_dugu);
          assert(v_izracun_rate.datum_od = to_date('01.07.2002', 'dd.mm.yyyy'));
          assert(v_izracun_rate.datum_do = to_date('31.12.2002', 'dd.mm.yyyy'));
          assert(v_izracun_rate.nacin_izracuna_kamate = ju_tipovi_pkg.KONFORMNI_OBRACUN, 'Ocekujem konformni obracun!');
@@ -612,7 +607,7 @@ as
    procedure t_eodvjetnik_primjer2
    is
          v_dug_rec            ju_tipovi_pkg.transakcija_rec;
-         v_glavnice_tab       ju_tipovi_pkg.glavnice;
+         v_dugovi_tab         ju_tipovi_pkg.dugovi;
 
          v_obracun_tab        ju_tipovi_pkg.izracun_kamate_tab_type;
          v_nema_uplata_tab    ju_tipovi_pkg.uplate;
@@ -626,17 +621,17 @@ as
          v_dug_rec.iznos := 150;
          v_dug_rec.datum := to_date('01.05.2002', 'dd.mm.yyyy');
 
-         v_glavnice_tab(1) := v_dug_rec;
+         v_dugovi_tab(1) := v_dug_rec;
 
          v_obracun_tab := ju_obracun_kamate_pkg.obracunaj_zateznu(p_kamatne_stope_tab  => ju_model_pkg.kamatne_stope_za_pravne,
                                                                   p_nacin_obracuna_tab => ju_model_pkg.nacin_obracuna_kamate,
-                                                                  p_glavnice_tab       => v_glavnice_tab,
+                                                                  p_dugovi_tab         => v_dugovi_tab,
                                                                   p_uplate_tab         => v_nema_uplata_tab,
                                                                   p_datum_obracuna     => to_date('05.04.2014', 'dd.mm.yyyy'));
 
         -- assert(v_obracun_tab.count = 9, 'Ocekujem 9 razdoblja uplate, a dobio: '||v_obracun_tab.count);
 
-         v_suma_glavnice := ju_obracun_kamate_pkg.suma_glavnice(v_obracun_tab);
+         v_suma_glavnice := ju_obracun_kamate_pkg.suma_duga(v_obracun_tab);
          --dbms_output.put_line('kamata primjer 2');
          v_suma_kamate   := ju_obracun_kamate_pkg.suma_kamate(v_obracun_tab);
          assert(v_suma_glavnice = 150, 'Ocekujem sumu glavnice 150, a dobio: '||v_suma_glavnice);
@@ -645,14 +640,14 @@ as
 
          -- prava rata
          v_izracun_rate := v_obracun_tab(1);
-         assert(v_izracun_rate.osnovica_izracuna_po_glavnici = 150);
+         assert(v_izracun_rate.osnovica_izracuna_po_dugu = 150);
          assert(v_izracun_rate.datum_od = to_date('01.05.2002', 'dd.mm.yyyy'));
          assert(v_izracun_rate.datum_do = to_date('30.06.2002', 'dd.mm.yyyy'));
          assert(v_izracun_rate.zatezna_kamata = 4.21);
 
          -- druga rata
          v_izracun_rate := v_obracun_tab(2);
-         assert(v_izracun_rate.osnovica_izracuna_po_glavnici = 150, 'Ocekujem osnovicu izracuna po glavnici 150, a dobio: '||v_izracun_rate.osnovica_izracuna_po_glavnici);
+         assert(v_izracun_rate.osnovica_izracuna_po_dugu = 150, 'Ocekujem osnovicu izracuna po glavnici 150, a dobio: '||v_izracun_rate.osnovica_izracuna_po_dugu);
          assert(v_izracun_rate.osnovica_izracuna_po_kamati = 4.21);
          assert(v_izracun_rate.datum_od = to_date('01.07.2002', 'dd.mm.yyyy'));
          assert(v_izracun_rate.datum_do = to_date('31.12.2002', 'dd.mm.yyyy'));
@@ -661,7 +656,7 @@ as
 
          -- zadnja rata
          v_izracun_rate := v_obracun_tab(16);
-         assert(v_izracun_rate.osnovica_izracuna_po_glavnici = 150.0);
+         assert(v_izracun_rate.osnovica_izracuna_po_dugu = 150.0);
          assert(v_izracun_rate.datum_od = to_date('01.01.2014', 'dd.mm.yyyy'));
          assert(v_izracun_rate.datum_do = to_date('05.04.2014', 'dd.mm.yyyy'));
          assert(v_izracun_rate.nacin_izracuna_kamate = ju_tipovi_pkg.PROPORCIONALNI_OBRACUN, 'Ocekujem proporcionalni obracun!');
@@ -671,7 +666,7 @@ as
  procedure t_eodvjetnik_primjer3
    is
          v_dug_rec            ju_tipovi_pkg.transakcija_rec;
-         v_glavnice_tab       ju_tipovi_pkg.glavnice;
+         v_dugovi_tab         ju_tipovi_pkg.dugovi;
 
          v_obracun_tab        ju_tipovi_pkg.izracun_kamate_tab_type;
          v_nema_uplata_tab    ju_tipovi_pkg.uplate;
@@ -685,17 +680,17 @@ as
          v_dug_rec.iznos := 150;
          v_dug_rec.datum := to_date('01.05.2002', 'dd.mm.yyyy');
 
-         v_glavnice_tab(1) := v_dug_rec;
+         v_dugovi_tab(1) := v_dug_rec;
 
          v_obracun_tab := ju_obracun_kamate_pkg.obracunaj_zateznu(p_kamatne_stope_tab  => ju_model_pkg.kamatne_stope_za_predstecajne,
                                                                   p_nacin_obracuna_tab => ju_model_pkg.nacin_obracuna_kamate,
-                                                                  p_glavnice_tab       => v_glavnice_tab,
+                                                                  p_dugovi_tab         => v_dugovi_tab,
                                                                   p_uplate_tab         => v_nema_uplata_tab,
                                                                   p_datum_obracuna     => to_date('05.04.2014', 'dd.mm.yyyy'));
 
         -- assert(v_obracun_tab.count = 9, 'Ocekujem 9 razdoblja uplate, a dobio: '||v_obracun_tab.count);
 
-         v_suma_glavnice := ju_obracun_kamate_pkg.suma_glavnice(v_obracun_tab);
+         v_suma_glavnice := ju_obracun_kamate_pkg.suma_duga(v_obracun_tab);
          v_suma_kamate   := ju_obracun_kamate_pkg.suma_kamate(v_obracun_tab);
          assert(v_suma_glavnice = 150, 'Ocekujem sumu glavnice 150, a dobio: '||v_suma_glavnice);
          assert(v_suma_kamate = 275.92, 'Ocekujem sumu kamate 275.92, a dobio: '||v_suma_kamate);
@@ -703,14 +698,14 @@ as
 
          -- prava rata
          v_izracun_rate := v_obracun_tab(1);
-         assert(v_izracun_rate.osnovica_izracuna_po_glavnici = 150);
+         assert(v_izracun_rate.osnovica_izracuna_po_dugu = 150);
          assert(v_izracun_rate.datum_od = to_date('01.05.2002', 'dd.mm.yyyy'));
          assert(v_izracun_rate.datum_do = to_date('30.06.2002', 'dd.mm.yyyy'));
          assert(v_izracun_rate.zatezna_kamata = 4.21);
 
          -- druga rata
          v_izracun_rate := v_obracun_tab(2);
-         assert(v_izracun_rate.osnovica_izracuna_po_glavnici = 150);
+         assert(v_izracun_rate.osnovica_izracuna_po_dugu = 150);
          assert(v_izracun_rate.osnovica_izracuna_po_kamati = 4.21);
          assert(v_izracun_rate.datum_od = to_date('01.07.2002', 'dd.mm.yyyy'));
          assert(v_izracun_rate.datum_do = to_date('31.12.2002', 'dd.mm.yyyy'));
@@ -719,7 +714,7 @@ as
 
          -- zadnja rata
          v_izracun_rate := v_obracun_tab(17);
-         assert(v_izracun_rate.osnovica_izracuna_po_glavnici = 150.0);
+         assert(v_izracun_rate.osnovica_izracuna_po_dugu = 150.0);
          assert(v_izracun_rate.datum_od = to_date('01.01.2014', 'dd.mm.yyyy'));
          assert(v_izracun_rate.datum_do = to_date('05.04.2014', 'dd.mm.yyyy'));
          assert(v_izracun_rate.nacin_izracuna_kamate = ju_tipovi_pkg.PROPORCIONALNI_OBRACUN, 'Ocekujem proporcionalni obracun!');
@@ -728,8 +723,8 @@ as
 -------------------------------------------------------------------------------
    procedure t_primjer_uplate1
    is
-     v_glavnica_rec    ju_tipovi_pkg.transakcija_rec;
-     v_glavnica_tab    ju_tipovi_pkg.glavnice;
+     v_dug_rec    ju_tipovi_pkg.transakcija_rec;
+     v_dugovi_tab    ju_tipovi_pkg.dugovi;
 
      v_uplata_rec      ju_tipovi_pkg.transakcija_rec;
      v_uplata_tab      ju_tipovi_pkg.uplate;
@@ -739,11 +734,11 @@ as
      v_suma_glavnice      number;
      v_suma_kamate        number;
    begin
-     v_glavnica_rec.id     := 1;
-     v_glavnica_rec.iznos  := 120;
-     v_glavnica_rec.datum  := to_date('05.01.2012', 'dd.mm.yyyy');
+     v_dug_rec.id     := 1;
+     v_dug_rec.iznos  := 120;
+     v_dug_rec.datum  := to_date('05.01.2012', 'dd.mm.yyyy');
 
-     v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+     v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
 
      v_uplata_rec.id       := 1;
@@ -755,11 +750,11 @@ as
 
      v_obracun_tab  :=    ju_obracun_kamate_pkg.obracunaj_zateznu(p_kamatne_stope_tab  => ju_model_pkg.kamatne_stope_za_pravne,
                                                                   p_nacin_obracuna_tab => ju_model_pkg.nacin_obracuna_kamate,
-                                                                  p_glavnice_tab       => v_glavnica_tab,
+                                                                  p_dugovi_tab         => v_dugovi_tab,
                                                                   p_uplate_tab         => v_uplata_tab,
                                                                   p_datum_obracuna     => to_date('03.07.2015', 'dd.mm.yyyy'));
 
-     v_suma_glavnice := ju_obracun_kamate_pkg.suma_glavnice(v_obracun_tab);
+     v_suma_glavnice := ju_obracun_kamate_pkg.suma_duga(v_obracun_tab);
      v_suma_kamate   := ju_obracun_kamate_pkg.suma_kamate(v_obracun_tab);
 
      --ju_obracun_kamate_pkg.output_izracun_zatezne(v_obracun_tab);
@@ -771,8 +766,8 @@ as
 -------------------------------------------------------------------------------
    procedure t_primjer_uplate_avansa
    is
-     v_glavnica_rec    ju_tipovi_pkg.transakcija_rec;
-     v_glavnica_tab    ju_tipovi_pkg.glavnice;
+     v_dug_rec    ju_tipovi_pkg.transakcija_rec;
+     v_dugovi_tab    ju_tipovi_pkg.dugovi;
 
      v_uplata_rec      ju_tipovi_pkg.transakcija_rec;
      v_uplata_tab      ju_tipovi_pkg.uplate;
@@ -782,11 +777,11 @@ as
      v_suma_glavnice      number;
      v_suma_kamate        number;
    begin
-     v_glavnica_rec.id     := 1;
-     v_glavnica_rec.iznos  := 120;
-     v_glavnica_rec.datum  := to_date('05.01.2012', 'dd.mm.yyyy');
+     v_dug_rec.id     := 1;
+     v_dug_rec.iznos  := 120;
+     v_dug_rec.datum  := to_date('05.01.2012', 'dd.mm.yyyy');
 
-     v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+     v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
 
      v_uplata_rec.id       := 1;
@@ -798,11 +793,11 @@ as
 
      v_obracun_tab  :=    ju_obracun_kamate_pkg.obracunaj_zateznu(p_kamatne_stope_tab  => ju_model_pkg.kamatne_stope_za_pravne,
                                                                   p_nacin_obracuna_tab => ju_model_pkg.nacin_obracuna_kamate,
-                                                                  p_glavnice_tab       => v_glavnica_tab,
+                                                                  p_dugovi_tab         => v_dugovi_tab,
                                                                   p_uplate_tab         => v_uplata_tab,
                                                                   p_datum_obracuna     => to_date('03.07.2015', 'dd.mm.yyyy'));
 
-     v_suma_glavnice := ju_obracun_kamate_pkg.suma_glavnice(v_obracun_tab);
+     v_suma_glavnice := ju_obracun_kamate_pkg.suma_duga(v_obracun_tab);
      v_suma_kamate   := ju_obracun_kamate_pkg.suma_kamate(v_obracun_tab);
 
      --ju_obracun_kamate_pkg.output_izracun_zatezne(v_obracun_tab);
@@ -814,8 +809,8 @@ as
 -------------------------------------------------------------------------------
    procedure t_primjer_dvije_uplate
    is
-     v_glavnica_rec    ju_tipovi_pkg.transakcija_rec;
-     v_glavnica_tab    ju_tipovi_pkg.glavnice;
+     v_dug_rec    ju_tipovi_pkg.transakcija_rec;
+     v_dugovi_tab    ju_tipovi_pkg.dugovi;
 
      v_uplata_rec      ju_tipovi_pkg.transakcija_rec;
      v_uplata_tab      ju_tipovi_pkg.uplate;
@@ -825,11 +820,11 @@ as
      v_suma_glavnice      number;
      v_suma_kamate        number;
    begin
-     v_glavnica_rec.id     := 1;
-     v_glavnica_rec.iznos  := 120;
-     v_glavnica_rec.datum  := to_date('05.01.2012', 'dd.mm.yyyy');
+     v_dug_rec.id     := 1;
+     v_dug_rec.iznos  := 120;
+     v_dug_rec.datum  := to_date('05.01.2012', 'dd.mm.yyyy');
 
-     v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+     v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
 
      v_uplata_rec.id       := 1;
@@ -849,11 +844,11 @@ as
 
      v_obracun_tab  :=    ju_obracun_kamate_pkg.obracunaj_zateznu(p_kamatne_stope_tab  => ju_model_pkg.kamatne_stope_za_pravne,
                                                                   p_nacin_obracuna_tab => ju_model_pkg.nacin_obracuna_kamate,
-                                                                  p_glavnice_tab       => v_glavnica_tab,
+                                                                  p_dugovi_tab         => v_dugovi_tab,
                                                                   p_uplate_tab         => v_uplata_tab,
                                                                   p_datum_obracuna     => to_date('03.04.2015', 'dd.mm.yyyy'));
 
-     v_suma_glavnice := ju_obracun_kamate_pkg.suma_glavnice(v_obracun_tab);
+     v_suma_glavnice := ju_obracun_kamate_pkg.suma_duga(v_obracun_tab);
      v_suma_kamate   := ju_obracun_kamate_pkg.suma_kamate(v_obracun_tab);
 
      --ju_obracun_kamate_pkg.output_izracun_zatezne(v_obracun_tab);
@@ -865,8 +860,8 @@ as
 -------------------------------------------------------------------------------
    procedure t_primjer_zatvaranja
    is
-     v_glavnica_rec    ju_tipovi_pkg.transakcija_rec;
-     v_glavnica_tab    ju_tipovi_pkg.glavnice;
+     v_dug_rec    ju_tipovi_pkg.transakcija_rec;
+     v_dugovi_tab    ju_tipovi_pkg.dugovi;
 
      v_uplata_rec      ju_tipovi_pkg.transakcija_rec;
      v_uplata_tab      ju_tipovi_pkg.uplate;
@@ -876,11 +871,11 @@ as
      v_suma_glavnice      number;
      v_suma_kamate        number;
    begin
-     v_glavnica_rec.id     := 1;
-     v_glavnica_rec.iznos  := 120;
-     v_glavnica_rec.datum  := to_date('05.01.2012', 'dd.mm.yyyy');
+     v_dug_rec.id     := 1;
+     v_dug_rec.iznos  := 120;
+     v_dug_rec.datum  := to_date('05.01.2012', 'dd.mm.yyyy');
 
-     v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+     v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
 
      v_uplata_rec.id       := 1;
@@ -906,11 +901,11 @@ as
 
      v_obracun_tab  :=    ju_obracun_kamate_pkg.obracunaj_zateznu(p_kamatne_stope_tab  => ju_model_pkg.kamatne_stope_za_pravne,
                                                                   p_nacin_obracuna_tab => ju_model_pkg.nacin_obracuna_kamate,
-                                                                  p_glavnice_tab       => v_glavnica_tab,
+                                                                  p_dugovi_tab         => v_dugovi_tab,
                                                                   p_uplate_tab         => v_uplata_tab,
                                                                   p_datum_obracuna     => to_date('03.04.2015', 'dd.mm.yyyy'));
 
-     v_suma_glavnice := ju_obracun_kamate_pkg.suma_glavnice(v_obracun_tab);
+     v_suma_glavnice := ju_obracun_kamate_pkg.suma_duga(v_obracun_tab);
      v_suma_kamate   := ju_obracun_kamate_pkg.suma_kamate(v_obracun_tab);
 
      --ju_obracun_kamate_pkg.output_izracun_zatezne(v_obracun_tab);
@@ -922,8 +917,8 @@ as
 -------------------------------------------------------------------------------
    procedure t_uplata_na_zadnji_dan_perioda
    is
-     v_glavnica_rec    ju_tipovi_pkg.transakcija_rec;
-     v_glavnica_tab    ju_tipovi_pkg.glavnice;
+     v_dug_rec    ju_tipovi_pkg.transakcija_rec;
+     v_dugovi_tab    ju_tipovi_pkg.dugovi;
 
      v_uplata_rec      ju_tipovi_pkg.transakcija_rec;
      v_uplata_tab      ju_tipovi_pkg.uplate;
@@ -933,11 +928,11 @@ as
      v_suma_glavnice      number;
      v_suma_kamate        number;
    begin
-     v_glavnica_rec.id     := 1;
-     v_glavnica_rec.iznos  := 120;
-     v_glavnica_rec.datum  := to_date('05.01.2012', 'dd.mm.yyyy');
+     v_dug_rec.id     := 1;
+     v_dug_rec.iznos  := 120;
+     v_dug_rec.datum  := to_date('05.01.2012', 'dd.mm.yyyy');
 
-     v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+     v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
 
      v_uplata_rec.id       := 1;
@@ -949,22 +944,22 @@ as
 
      v_obracun_tab  :=    ju_obracun_kamate_pkg.obracunaj_zateznu(p_kamatne_stope_tab  => ju_model_pkg.kamatne_stope_za_fizicke,
                                                                   p_nacin_obracuna_tab => ju_model_pkg.nacin_obracuna_kamate,
-                                                                  p_glavnice_tab       => v_glavnica_tab,
+                                                                  p_dugovi_tab         => v_dugovi_tab,
                                                                   p_uplate_tab         => v_uplata_tab,
                                                                   p_datum_obracuna     => to_date('03.05.2013', 'dd.mm.yyyy'));
 
-     v_suma_glavnice := ju_obracun_kamate_pkg.suma_glavnice(v_obracun_tab);
+     v_suma_glavnice := ju_obracun_kamate_pkg.suma_duga(v_obracun_tab);
      v_suma_kamate   := ju_obracun_kamate_pkg.suma_kamate(v_obracun_tab);
-     
+
      --ju_obracun_kamate_pkg.output_izracun_zatezne(v_obracun_tab);
 
      assert(v_suma_glavnice = 99.24, 'Ocekujem glavnicu 99.24, a dobio sam '||v_suma_glavnice);
      assert(v_suma_kamate = 4.01, 'Ocekujem kamatu 4.01, a dobio sam '||v_suma_kamate);
      --assert(v_obracun_tab.count = 2, 'Ocekujem dva detalja obracuna, a dobio sam '||v_obracun_tab.count);
-     
+
 --     assert(v_obracun_tab(1).datum_od = to_date('05.01.2012', 'dd.mm.yyyy'));
 --     assert(v_obracun_tab(1).datum_do = to_date('31.12.2012', 'dd.mm.yyyy'), 'Obracun ide do dana uplate 31.12.2012, a dobio sam '||v_obracun_tab(1).datum_do);
---     
+--
 --     assert(v_obracun_tab(2).datum_od = to_date('01.01.2013', 'dd.mm.yyyy'));
 --     assert(v_obracun_tab(2).datum_do = to_date('03.05.2013', 'dd.mm.yyyy'), 'Kamata se racuna i na dan uplate ako dug nije zatvoren');
 
@@ -973,8 +968,8 @@ as
 -------------------------------------------------------------------------------
    procedure t_uplata_manja_od_kamate
    is
-     v_glavnica_rec    ju_tipovi_pkg.transakcija_rec;
-     v_glavnica_tab    ju_tipovi_pkg.glavnice;
+     v_dug_rec    ju_tipovi_pkg.transakcija_rec;
+     v_dugovi_tab    ju_tipovi_pkg.dugovi;
 
      v_uplata_rec      ju_tipovi_pkg.transakcija_rec;
      v_uplata_tab      ju_tipovi_pkg.uplate;
@@ -984,11 +979,11 @@ as
      v_suma_glavnice      number;
      v_suma_kamate        number;
    begin
-     v_glavnica_rec.id     := 1;
-     v_glavnica_rec.iznos  := 120;
-     v_glavnica_rec.datum  := to_date('05.01.2012', 'dd.mm.yyyy');
+     v_dug_rec.id     := 1;
+     v_dug_rec.iznos  := 120;
+     v_dug_rec.datum  := to_date('05.01.2012', 'dd.mm.yyyy');
 
-     v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+     v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
 
      v_uplata_rec.id       := 1;
@@ -1000,11 +995,11 @@ as
 
      v_obracun_tab  :=    ju_obracun_kamate_pkg.obracunaj_zateznu(p_kamatne_stope_tab  => ju_model_pkg.kamatne_stope_za_fizicke,
                                                                   p_nacin_obracuna_tab => ju_model_pkg.nacin_obracuna_kamate,
-                                                                  p_glavnice_tab       => v_glavnica_tab,
+                                                                  p_dugovi_tab         => v_dugovi_tab,
                                                                   p_uplate_tab         => v_uplata_tab,
                                                                   p_datum_obracuna     => to_date('03.05.2013', 'dd.mm.yyyy'));
 
-     v_suma_glavnice := ju_obracun_kamate_pkg.suma_glavnice(v_obracun_tab);
+     v_suma_glavnice := ju_obracun_kamate_pkg.suma_duga(v_obracun_tab);
      v_suma_kamate   := ju_obracun_kamate_pkg.suma_kamate(v_obracun_tab);
 
      --ju_obracun_kamate_pkg.output_izracun_zatezne(v_obracun_tab);
@@ -1016,8 +1011,8 @@ as
 -------------------------------------------------------------------------------
     procedure t_vise_glavnica_uplata
     is
-     v_glavnica_rec    ju_tipovi_pkg.transakcija_rec;
-     v_glavnica_tab    ju_tipovi_pkg.glavnice;
+     v_dug_rec    ju_tipovi_pkg.transakcija_rec;
+     v_dugovi_tab    ju_tipovi_pkg.dugovi;
 
      v_uplata_rec      ju_tipovi_pkg.transakcija_rec;
      v_uplata_tab      ju_tipovi_pkg.uplate;
@@ -1028,23 +1023,23 @@ as
      v_suma_kamate        number;
    begin
      -- dbms_output.put_line('***vise uplata i glavnica test***');
-     v_glavnica_rec.id     := 22;
-     v_glavnica_rec.iznos  := 150;
-     v_glavnica_rec.datum  := to_date('05.05.2013', 'dd.mm.yyyy');
+     v_dug_rec.id     := 22;
+     v_dug_rec.iznos  := 150;
+     v_dug_rec.datum  := to_date('05.05.2013', 'dd.mm.yyyy');
 
-     v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
-     
-     v_glavnica_rec.id     := 41;
-     v_glavnica_rec.iznos  := 100.45;
-     v_glavnica_rec.datum  := to_date('09.07.2013', 'dd.mm.yyyy');
+     v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
-     v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
-     
-     v_glavnica_rec.id     := 61;
-     v_glavnica_rec.iznos  := 140;
-     v_glavnica_rec.datum  := to_date('18.08.2013', 'dd.mm.yyyy');
+     v_dug_rec.id     := 41;
+     v_dug_rec.iznos  := 100.45;
+     v_dug_rec.datum  := to_date('09.07.2013', 'dd.mm.yyyy');
 
-     v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
+     v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
+
+     v_dug_rec.id     := 61;
+     v_dug_rec.iznos  := 140;
+     v_dug_rec.datum  := to_date('18.08.2013', 'dd.mm.yyyy');
+
+     v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
 
 
      v_uplata_rec.id       := 62;
@@ -1072,11 +1067,11 @@ as
 
      v_obracun_tab  :=    ju_obracun_kamate_pkg.obracunaj_zateznu(p_kamatne_stope_tab  => ju_model_pkg.kamatne_stope_za_fizicke,
                                                                   p_nacin_obracuna_tab => ju_model_pkg.nacin_obracuna_kamate,
-                                                                  p_glavnice_tab       => v_glavnica_tab,
+                                                                  p_dugovi_tab         => v_dugovi_tab,
                                                                   p_uplate_tab         => v_uplata_tab,
                                                                   p_datum_obracuna     => to_date('25.04.2014', 'dd.mm.yyyy'));
 
-     v_suma_glavnice := ju_obracun_kamate_pkg.suma_glavnice(v_obracun_tab);
+     v_suma_glavnice := ju_obracun_kamate_pkg.suma_duga(v_obracun_tab);
      v_suma_kamate   := ju_obracun_kamate_pkg.suma_kamate(v_obracun_tab);
 
      --ju_obracun_kamate_pkg.output_izracun_zatezne(v_obracun_tab);
@@ -1093,8 +1088,8 @@ as
 -------------------------------------------------------------------------------
     procedure t_podmirenje_na_dan_obracuna
     is
-     v_glavnica_rec    ju_tipovi_pkg.transakcija_rec;
-     v_glavnica_tab    ju_tipovi_pkg.glavnice;
+     v_dug_rec    ju_tipovi_pkg.transakcija_rec;
+     v_dugovi_tab    ju_tipovi_pkg.dugovi;
 
      v_uplata_rec      ju_tipovi_pkg.transakcija_rec;
      v_uplata_tab      ju_tipovi_pkg.uplate;
@@ -1105,12 +1100,12 @@ as
      v_suma_kamate        number;
    begin
      -- dbms_output.put_line('***vise uplata i glavnica test***');
-     v_glavnica_rec.id     := 22;
-     v_glavnica_rec.iznos  := 150;
-     v_glavnica_rec.datum  := to_date('05.05.2013', 'dd.mm.yyyy');
+     v_dug_rec.id     := 22;
+     v_dug_rec.iznos  := 150;
+     v_dug_rec.datum  := to_date('05.05.2013', 'dd.mm.yyyy');
 
-     v_glavnica_tab(v_glavnica_tab.count + 1) := v_glavnica_rec;
-     
+     v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
+
 
      v_uplata_rec.id       := 62;
      v_uplata_rec.iznos    := 167.55;
@@ -1121,11 +1116,11 @@ as
 
      v_obracun_tab  :=    ju_obracun_kamate_pkg.obracunaj_zateznu(p_kamatne_stope_tab  => ju_model_pkg.kamatne_stope_za_fizicke,
                                                                   p_nacin_obracuna_tab => ju_model_pkg.nacin_obracuna_kamate,
-                                                                  p_glavnice_tab       => v_glavnica_tab,
+                                                                  p_dugovi_tab         => v_dugovi_tab,
                                                                   p_uplate_tab         => v_uplata_tab,
                                                                   p_datum_obracuna     => to_date('25.04.2014', 'dd.mm.yyyy'));
-                                                                  
-     v_suma_glavnice := ju_obracun_kamate_pkg.suma_glavnice(v_obracun_tab);
+
+     v_suma_glavnice := ju_obracun_kamate_pkg.suma_duga(v_obracun_tab);
      v_suma_kamate   := ju_obracun_kamate_pkg.suma_kamate(v_obracun_tab);
 
 --     ju_obracun_kamate_pkg.output_izracun_zatezne(v_obracun_tab);
@@ -1133,10 +1128,59 @@ as
      assert(v_suma_glavnice = 0, 'Za kompletnu uplatu na dan obracuna se treba zatvriti sva glavnica, a on postoji u iznosu: '||v_suma_glavnice);
     end;
 -------------------------------------------------------------------------------
+   procedure t_dug_plus_ovrha
+   is
+     v_dug_rec    ju_tipovi_pkg.transakcija_rec;
+     v_dugovi_tab    ju_tipovi_pkg.dugovi;
+
+     v_uplata_rec      ju_tipovi_pkg.transakcija_rec;
+     v_uplata_tab      ju_tipovi_pkg.uplate;
+
+     v_obracun_tab        ju_tipovi_pkg.izracun_kamate_tab_type;
+
+     v_suma_duga          number;
+     v_suma_kamate        number;
+   begin     
+     v_dug_rec.id     := 23;
+     v_dug_rec.iznos  := 50;
+     v_dug_rec.datum  := to_date('05.12.2013', 'dd.mm.yyyy');
+
+     v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
+  
+   
+   
+     v_dug_rec.id     := 22;
+     v_dug_rec.iznos  := 150;
+     v_dug_rec.datum  := to_date('05.05.2013', 'dd.mm.yyyy');
+
+     v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
+
+
+     v_uplata_rec.id       := 62;
+     v_uplata_rec.iznos    := 85;
+     v_uplata_rec.datum    := to_date('15.03.2014', 'dd.mm.yyyy');
+
+     v_uplata_tab(v_uplata_tab.count + 1) := v_uplata_rec;
+
+
+     v_obracun_tab  :=    ju_obracun_kamate_pkg.obracunaj_zateznu(p_kamatne_stope_tab  => ju_model_pkg.kamatne_stope_za_fizicke,
+                                                                  p_nacin_obracuna_tab => ju_model_pkg.nacin_obracuna_kamate,
+                                                                  p_dugovi_tab         => v_dugovi_tab,
+                                                                  p_uplate_tab         => v_uplata_tab,
+                                                                  p_datum_obracuna     => to_date('25.04.2014', 'dd.mm.yyyy'));
+
+     v_suma_duga     := ju_obracun_kamate_pkg.suma_duga(v_obracun_tab);
+     v_suma_kamate   := ju_obracun_kamate_pkg.suma_kamate(v_obracun_tab);
+
+     ju_obracun_kamate_pkg.output_izracun_zatezne(v_obracun_tab);
+--     assert(v_suma_kamate = 0, 'Za uplate na dan obracuna se treba zatvoriti sva kamata, a ona postoji u iznosu: '||v_suma_kamate);
+--     assert(v_suma_glavnice = 0, 'Za kompletnu uplatu na dan obracuna se treba zatvriti sva glavnica, a on postoji u iznosu: '||v_suma_glavnice);
+    end;
+-------------------------------------------------------------------------------
     procedure test
     is
     begin
-       t_podjelu_glavnice_po_ks;
+       t_podjela_duga_po_ks;
        t_odredivanje_nacina_izracuna;
        t_uplate_unutar_glavnica;
        t_metode_obracuna_kamate;
@@ -1154,9 +1198,11 @@ as
        t_primjer_zatvaranja;
        t_uplata_na_zadnji_dan_perioda;
        t_uplata_manja_od_kamate;
-       
+
        t_vise_glavnica_uplata;
        t_podmirenje_na_dan_obracuna;
+       
+       t_dug_plus_ovrha;
     end;
 
 end ju_test_pkg;

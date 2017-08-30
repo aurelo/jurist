@@ -6,7 +6,7 @@ CREATE OR REPLACE PACKAGE BODY ju_model_pkg
 as
 -------------------------------------------------------------------------------
    function id_za_sifru_izracuna(
-     p_sifra_izracuna      in      ju_tipovi_izracuna.sifra%type  
+     p_sifra_izracuna      in      ju_tipovi_izracuna.sifra%type
    )
    return ju_tipovi_izracuna.id%type
    is
@@ -16,17 +16,17 @@ as
      from     ju_tipovi_izracuna tia
      where    tia.sifra = p_sifra_izracuna
      ;
-     
+
      v_id     ju_tipovi_izracuna.id%type;
    begin
      open cur_id;
-     
+
      fetch cur_id
      into  v_id
      ;
-     
+
      close cur_id;
-     
+
      return v_id;
    end;
 -------------------------------------------------------------------------------
@@ -43,10 +43,10 @@ as
       order by ksi.ks_datum_od
       ,        decode(nvl(ksi.primaran, 'N'), 'D', 0, 1)
       ;
-     
-      v_kamatne_stope_rec             ju_tipovi_pkg.kamatne_stope_rec; 
+
+      v_kamatne_stope_rec             ju_tipovi_pkg.kamatne_stope_rec;
       v_kamatne_stope_tab             ju_tipovi_pkg.kamatne_stope_tab_type;
-       
+
    begin
       for r_ks in cur_ks
       loop
@@ -55,16 +55,43 @@ as
              v_kamatne_stope_rec.stopa     := r_ks.ks_stopa;
              v_kamatne_stope_rec.datum_od  := r_ks.ks_datum_od;
              v_kamatne_stope_rec.datum_do  := r_ks.ks_datum_do;
-             
+
              v_kamatne_stope_tab(v_kamatne_stope_tab.count + 1) := v_kamatne_stope_rec;
-           
+
       end loop;
 
-      
+
       return v_kamatne_stope_tab;
    end;
 -------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+   function get_vrsta_transakcije_id(
+     p_naziv          in    ju_vrste_transakcija.naziv%type
+   )
+   return   ju_vrste_transakcija.id%type
+   is
+     cursor cur_vta
+     is
+     select   vta.id
+     from     ju_vrste_transakcija vta
+     where    vta.naziv = p_naziv
+     ;
+     
+     v_vta_id  ju_vrste_transakcija.id%type;
+   begin
+     open cur_vta;
+     
+     fetch cur_vta
+     into  v_vta_id
+     ;
+     
+     close cur_vta;
+     
+     return v_vta_id;
+     
+   end;
 -------------------------------------------------------------------------------
+
    function kamatne_stope_za_fizicke
    return ju_tipovi_pkg.kamatne_stope_tab_type
    is
@@ -102,11 +129,11 @@ as
         v_nacin_obracuna_rec.datum_od               := r_obr.datum_od;
         v_nacin_obracuna_rec.datum_do               := r_obr.datum_do;
         v_nacin_obracuna_rec.uz_razdoblje_obracuna  := r_obr.duljina_razdoblja;
-        
+
         v_nacin_obracuna_kamate_tab(v_nacin_obracuna_kamate_tab.count + 1) := v_nacin_obracuna_rec;
       end loop;
-      
+
       return v_nacin_obracuna_kamate_tab;
-   end;   
+   end;
 end;
 /

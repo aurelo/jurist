@@ -123,3 +123,27 @@ from
 order by 1 desc
 ,        10
 /
+prompt
+prompt Creating view JU_TRANSAKCIJE_IZRACUNA_SORT_V
+prompt ============================================
+prompt
+create or replace view ju_transakcije_izracuna_sort_v
+as
+      select   jte.ize_id izracun_id
+      ,        jte.id transakcija_id
+      ,        jte.iznos
+      ,        jte.datum 
+      ,        jte.vta_id vrsta_transakcije_id
+      ,        vta.strana
+      ,        vta.prioritetna
+      ,        vta.naziv
+      from     ju_transakcije jte
+      ,        ju_vrste_transakcija vta
+      where    jte.vta_id = vta.id 
+      order by jte.ize_id
+      ,        vta.strana
+      ,        decode(vta.prioritetna, 'Y', 0, 1)
+      ,        decode(vta.sort_datuma, 'ASC', jte.datum) asc
+      ,        decode(vta.sort_datuma, 'DESC', jte.datum) desc
+      ,        jte.id
+/

@@ -8,7 +8,7 @@ as
 -- PRIVATE
 ------------------------------------------------------------------------------- 
   C_ZATEZNE_IZRACUN    constant  varchar2(16)  := 'ZATEZNE_IZRACUN';
-  C_GLAVNICE           constant  varchar2(16)  := 'GLAVNICE';
+  C_DUGOVI             constant  varchar2(16)  := 'DUGOVI';
   C_UPLATE             constant  varchar2(16)  := 'UPLATE';
   C_ZATEZNE_REZULTAT   constant  varchar2(16)  := 'ZATEZNE_REZULTAT';
 ------------------------------------------------------------------------------- 
@@ -70,45 +70,47 @@ as
         
     end;
 -------------------------------------------------------------------------------
-    procedure load_glavnice_izracuna(
-      p_izracun_id        in    ju_izracun_zatezne.id%type
+    procedure load_dugove_izracuna(
+      p_izracun_id              in     ju_izracun_zatezne.id%type
+     ,p_tip_duga_id             in     ju_vrste_transakcija.id%type default null
     )
     is
-      cursor cur_glavnice
+      cursor cur_dugovi
       is
-      select   jge.iznos
-      ,        jge.datum_dospijeca
-      from     ju_glavnice jge
-      where    jge.ize_id = p_izracun_id
-      order by jge.datum_dospijeca 
-      ,        jge.id
+      select   tist.iznos
+      ,        tist.datum datum_dospijeca
+      ,        tist.vrsta_transakcije_id
+      from     ju_transakcije_izracuna_sort_v tist
+      where    tist.izracun_id = p_izracun_id
+      and      tist.strana = 'D'
+      and      tist.vrsta_transakcije_id = nvl(p_tip_duga_id, tist.vrsta_transakcije_id)
       ;
       v_seq_id number;
     begin
-      for r_glavnice in cur_glavnice
+      for r_dugovi in cur_dugovi
       loop
-        v_seq_id := nova_glavnica(p_iznos_glavnice => r_glavnice.iznos, p_datum_glavnice => r_glavnice.datum_dospijeca); 
+        v_seq_id := novi_dug(p_iznos_duga => r_dugovi.iznos, p_datum_duga => r_dugovi.datum_dospijeca, p_tip_duga_id => r_dugovi.vrsta_transakcije_id); 
       end loop;
     end;
-
+-------------------------------------------------------------------------------
     procedure load_uplate_izracuna(
       p_izracun_id        in    ju_izracun_zatezne.id%type
     )
     is
       cursor cur_uplate
       is
-      select   jue.iznos
-      ,        jue.datum_uplate
-      from     ju_uplate jue
-      where    jue.ize_id = p_izracun_id
-      order by jue.datum_uplate
-      ,        jue.id
+      select   tist.iznos
+      ,        tist.datum datum_uplate
+      ,        tist.vrsta_transakcije_id
+      from     ju_transakcije_izracuna_sort_v tist
+      where    tist.izracun_id = p_izracun_id
+      and      tist.strana = 'P'
       ;
       v_seq_id    number;
     begin
       for r_uplate in cur_uplate
       loop
-          v_seq_id := nova_uplata(p_iznos_uplate => r_uplate.iznos, p_datum_uplate => r_uplate.datum_uplate);
+          v_seq_id := nova_uplata(p_iznos_uplate => r_uplate.iznos, p_datum_uplate => r_uplate.datum_uplate, p_tip_uplate_id => r_uplate.vrsta_transakcije_id);
       end loop;
     end;
     
@@ -129,13 +131,13 @@ as
        loop
           v_seq_id := apex_collection.add_member(
                           p_collection_name     => ZATEZNE_REZULTAT
-                         ,p_n001                => r_rezultati.glavnica_id
+                         ,p_n001                => r_rezultati.dug_id
                          ,p_n002                => r_rezultati.uplata_id
                          ,p_c001                => r_rezultati.uplata_na_zadnji_dan_YN 
                          ,p_n003                => r_rezultati.osnovica
                          ,p_n004                => r_rezultati.kamata_prethodnog_razdoblja
                          ,p_n005                => r_rezultati.umanjenje_zbog_uplate
-                         ,p_c006                => 100 * r_rezultati.osnovica_izracuna_po_glavnici
+                         ,p_c006                => 100 * r_rezultati.osnovica_izracuna_po_dugu
                          ,p_c007                => 100 * r_rezultati.osnovica_izracuna_po_kamati
                          ,p_d001                => r_rezultati.datum_od
                          ,p_d002                => r_rezultati.datum_do
@@ -193,18 +195,20 @@ as
     )
     is
     begin
-      insert into ju_glavnice (
+      insert into ju_transakcije (
         id
        ,ize_id
        ,iznos
-       ,datum_dospijeca
+       ,datum
+       ,vta_id
       )
       (
        select   ju_zatezne_app_pkg.new_id
        ,        p_izracun_id
-       ,        sg.iznos
-       ,        sg.datum_dospijeca
-       from     ju_session_glavnice_v sg
+       ,        sd.iznos
+       ,        sd.datum_dospijeca
+       ,        sd.vrsta_duga_id
+       from     ju_session_dugovi_v sd
       )
       ;
     end;
@@ -214,17 +218,19 @@ as
     )
     is
     begin
-      insert into ju_uplate(
-         id
-        ,ize_id
-        ,iznos
-        ,datum_uplate
-       )
+      insert into ju_transakcije (
+        id
+       ,ize_id
+       ,iznos
+       ,datum
+       ,vta_id
+      )
        (
        select   ju_zatezne_app_pkg.new_id
        ,        p_izracun_id
        ,        su.iznos
        ,        su.datum_uplate
+       ,        su.vrsta_transakcije_id
        from     ju_session_uplate_v su
        );
     end;
@@ -237,7 +243,7 @@ as
       insert into ju_rezultat_izracuna (
          id
         ,ize_id
-        ,glavnica_id
+        ,dug_id
         ,uplata_id
         ,kamata_id
         ,kamatna_stopa
@@ -248,7 +254,7 @@ as
         ,osnovica
         ,kamata_prethodnog_razdoblja
         ,umanjenje_zbog_uplate
-        ,osnovica_izracuna_po_glavnici
+        ,osnovica_izracuna_po_dugu
         ,osnovica_izracuna_po_kamati
         ,zatezna_kamata
         ,ukupna_zatezna_kamata
@@ -257,7 +263,7 @@ as
        (
        select   ju_zatezne_app_pkg.new_id
        ,        p_izracun_id
-       ,        sri.glavnica_id
+       ,        sri.dug_id
        ,        sri.uplata_id
        ,        sri.kamatna_stopa_id
        ,        sri.kamatna_stopa
@@ -268,7 +274,7 @@ as
        ,        sri.osnovica
        ,        sri.kamata_prethodnog_razdoblja
        ,        sri.umanjenje_zbog_uplate
-       ,        sri.osnovica_izracuna_po_glavnici
+       ,        sri.osnovica_izracuna_po_dugu
        ,        sri.osnovica_izracuna_po_kamati
        ,        sri.zatezna_kamata
        ,        sri.ukupna_zatezna_kamata
@@ -279,25 +285,25 @@ as
 -------------------------------------------------------------------------------
 -- PUBLIC
 -------------------------------------------------------------------------------  
-  function ZATEZNE_IZRACUN    return  varchar2 
+  function ZATEZNE_IZRACUN    return  varchar2 deterministic
   is 
   begin 
      return C_ZATEZNE_IZRACUN;
   end;
   
-  function GLAVNICE           return  varchar2
-  is 
-  begin 
-     return C_GLAVNICE;
-  end;
-  
-  function UPLATE             return  varchar2
+  function DUGOVI             return  varchar2 deterministic
+  is
+  begin
+    return C_DUGOVI;
+  end; 
+
+  function UPLATE             return  varchar2 deterministic
   is 
   begin 
      return C_UPLATE;
   end;
   
-  function ZATEZNE_REZULTAT   return  varchar2
+  function ZATEZNE_REZULTAT   return  varchar2 deterministic
   is 
   begin 
      return C_ZATEZNE_REZULTAT;
@@ -309,17 +315,18 @@ as
   begin
       izbrisi_kolekciju(ZATEZNE_IZRACUN);
   end;
--------------------------------------------------------------------------------  
-  procedure stvori_kolekciju_glavnica
+
+-------------------------------------------------------------------------------
+  procedure stvori_kolekciju_dugova
   is
   begin
-    stvori_kolekciju(GLAVNICE);
+    stvori_kolekciju(DUGOVI);
   end;
 -------------------------------------------------------------------------------
-  procedure izbrisi_kolekciju_glavnica
+  procedure izbrisi_kolekciju_dugova
   is
   begin
-      izbrisi_kolekciju(GLAVNICE);
+      izbrisi_kolekciju(DUGOVI);
   end;
 -------------------------------------------------------------------------------
   procedure stvori_kolekciju_uplata
@@ -350,7 +357,8 @@ as
   is
   begin
         stvori_kolekciju_izracuna; 
-        stvori_kolekciju_glavnica;
+        stvori_kolekciju_dugova;
+--        stvori_kolekciju_glavnica;
         stvori_kolekciju_uplata;
         stvori_kolekciju_rezultata;
   end;
@@ -360,7 +368,8 @@ as
   begin
         izbrisi_kolekciju_rezultata;
         izbrisi_kolekciju_uplata;
-        izbrisi_kolekciju_glavnica;
+  --      izbrisi_kolekciju_glavnica;
+        izbrisi_kolekciju_dugova;
         izbrisi_kolekciju_izracuna;
         commit;
   end;
@@ -382,51 +391,61 @@ as
                                   );
     end;
 -------------------------------------------------------------------------------
-  function nova_glavnica(
-     p_iznos_glavnice       in      number
-    ,p_datum_glavnice       in      date  
+  function novi_dug(
+     p_iznos_duga           in      number
+    ,p_datum_duga           in      date
+    ,p_tip_duga_id          in      number
   )
   return number
   is
   begin
     -- stvori ako ne postoji
-    stvori_kolekciju_glavnica;
+    stvori_kolekciju_dugova;
     
-    return apex_collection.add_member(p_collection_name => GLAVNICE,
-                                      p_n001            => p_iznos_glavnice,
-                                      p_d001            => p_datum_glavnice
+    return apex_collection.add_member(p_collection_name => DUGOVI,
+                                      p_n001            => p_iznos_duga,
+                                      p_d001            => p_datum_duga,
+                                      p_n002            => p_tip_duga_id
                                      );
   end;
 -------------------------------------------------------------------------------
-  procedure obrisi_glavnicu(
+  procedure obrisi_dug(
     p_seq_id                in      apex_collections.seq_id%type
   )
   is
   begin
-    apex_collection.delete_member(p_collection_name => GLAVNICE, p_seq => p_seq_id);
+    apex_collection.delete_member(p_collection_name => DUGOVI, p_seq => p_seq_id);
   end;
 -------------------------------------------------------------------------------  
-  procedure azuriraj_glavnicu(
+  procedure azuriraj_dug(
     p_seq_id                in      apex_collections.seq_id%type
    ,p_iznos_glavnice        in      number
    ,p_datum_izracuna        in      date
+   ,p_tip_duga_id           in      number
   )
   is
   begin
-    apex_collection.update_member_attribute(p_collection_name => GLAVNICE,
+    apex_collection.update_member_attribute(p_collection_name => DUGOVI,
                                             p_seq             => p_seq_id,
                                             p_attr_number     => 1,
                                             p_number_value    => p_iznos_glavnice);
                                             
-    apex_collection.update_member_attribute(p_collection_name => GLAVNICE,
+    apex_collection.update_member_attribute(p_collection_name => DUGOVI,
                                             p_seq             => p_seq_id,
                                             p_attr_number     => 1,
                                             p_date_value      => p_datum_izracuna);
+                                            
+    apex_collection.update_member_attribute(p_collection_name => DUGOVI,
+                                            p_seq             => p_seq_id,
+                                            p_attr_number     => 2,
+                                            p_number_value    => p_tip_duga_id);
+
   end;
 -------------------------------------------------------------------------------
   function nova_uplata(
     p_iznos_uplate          in      number
    ,p_datum_uplate          in      date
+   ,p_tip_uplate_id         in      number
   )
   return number
   is
@@ -435,7 +454,8 @@ as
     
     return apex_collection.add_member(p_collection_name => UPLATE,
                                       p_n001            => p_iznos_uplate,
-                                      p_d001            => p_datum_uplate
+                                      p_d001            => p_datum_uplate,
+                                      p_n002            => p_tip_uplate_id
                                      );
   end;
 -------------------------------------------------------------------------------  
@@ -473,13 +493,13 @@ as
   is
   begin
     return  apex_collection.add_member(p_collection_name => ZATEZNE_REZULTAT,
-                                       p_n001            => p_izracun_rec.glavnica_id,
+                                       p_n001            => p_izracun_rec.dug_id,
                                        p_n002            => p_izracun_rec.uplata_id,
                                        p_c001            => p_izracun_rec.uplata_na_zadnji_dan_YN,
                                        p_n003            => p_izracun_rec.osnovica,
                                        p_n004            => p_izracun_rec.kamata_prethodnog_razdoblja,
                                        p_n005            => p_izracun_rec.umanjenje_zbog_uplate,
-                                       p_c006            => p_izracun_rec.osnovica_izracuna_po_glavnici,
+                                       p_c006            => p_izracun_rec.osnovica_izracuna_po_dugu,
                                        p_c007            => p_izracun_rec.osnovica_izracuna_po_kamati,
                                        p_d001            => p_izracun_rec.datum_od,
                                        p_d002            => p_izracun_rec.datum_do,
@@ -506,7 +526,7 @@ as
        begin
           select   count(*)
           into     v_cnt
-          from     ju_session_glavnice_v
+          from     ju_session_dugovi_v
           ;
           
           return v_cnt > 0;
@@ -551,29 +571,29 @@ as
     end;
     
 -------------------------------------------------------------------------------
-   function glavnice_iz_sessiona
-   return   ju_tipovi_pkg.glavnice
+   function dugovi_iz_sessiona
+   return   ju_tipovi_pkg.dugovi
    is
-     cursor cur_glavnice
+     cursor cur_dugovi
      is
      select    jsg.seq_id id
      ,         jsg.iznos
      ,         jsg.datum_dospijeca datum
-     from      ju_session_glavnice_v jsg
+     from      ju_session_dugovi_v jsg
      order by  jsg.datum_dospijeca
      ,         jsg.seq_id
      ;
 
-     v_glavnice_tab      ju_tipovi_pkg.glavnice;
+     v_dugovi_tab      ju_tipovi_pkg.dugovi;
    begin
-     open cur_glavnice;
+     open cur_dugovi;
 
-     fetch cur_glavnice
-     bulk collect into v_glavnice_tab;
+     fetch cur_dugovi
+     bulk collect into v_dugovi_tab;
 
-     close cur_glavnice;
+     close cur_dugovi;
 
-     return v_glavnice_tab;
+     return v_dugovi_tab;
 
    end;
 -------------------------------------------------------------------------------
@@ -604,8 +624,7 @@ as
 
 -------------------------------------------------------------------------------
     procedure obracun_u_session(
-      p_session_obracun_header      in   ju_session_zatezne_izracun_v%rowtype
-     ,p_obracun_zateznih_tab        in   ju_tipovi_pkg.izracun_kamate_tab_type
+      p_obracun_zateznih_tab        in   ju_tipovi_pkg.izracun_kamate_tab_type
       )
     is
      v_obracun_rec             ju_session_rezultat_izracuna_v%rowtype;
@@ -619,7 +638,7 @@ as
      is
         v_rec    ju_session_rezultat_izracuna_v%rowtype;
      begin
-        v_rec.glavnica_id                   := p_izracun_kamate_rec.glavnica_id;
+        v_rec.dug_id                        := p_izracun_kamate_rec.dug_id;
         v_rec.uplata_id                     := p_izracun_kamate_rec.uplata_id;
         v_rec.uplata_na_zadnji_dan_YN       := p_izracun_kamate_rec.uplata_na_zadnji_dan_YN;
         v_rec.kamatna_stopa_id              := p_izracun_kamate_rec.kamatna_stopa_id;
@@ -631,7 +650,7 @@ as
         v_rec.osnovica                      := p_izracun_kamate_rec.osnovica;
         v_rec.kamata_prethodnog_razdoblja   := p_izracun_kamate_rec.kamata_prethodnog_razdoblja;
         v_rec.umanjenje_zbog_uplate         := p_izracun_kamate_rec.umanjenje_zbog_uplate;
-        v_rec.osnovica_izracuna_po_glavnici := p_izracun_kamate_rec.osnovica_izracuna_po_glavnici * 100;
+        v_rec.osnovica_izracuna_po_dugu     := p_izracun_kamate_rec.osnovica_izracuna_po_dugu * 100;
         v_rec.osnovica_izracuna_po_kamati   := p_izracun_kamate_rec.osnovica_izracuna_po_kamati * 100;
         v_rec.zatezna_kamata                := p_izracun_kamate_rec.zatezna_kamata * 100;
         v_rec.ukupna_zatezna_kamata         := p_izracun_kamate_rec.ukupna_zatezna_kamata * 100;
@@ -654,7 +673,7 @@ as
 -------------
     procedure izracun_session_zatezne
     is
-      v_glavnice_tab          ju_tipovi_pkg.glavnice;
+      v_dugovi_tab            ju_tipovi_pkg.dugovi;
       v_uplate_tab            ju_tipovi_pkg.uplate;
 
       v_obracun_header        ju_session_zatezne_izracun_v%rowtype;
@@ -668,24 +687,24 @@ as
          return;
       end if;
 
-      v_glavnice_tab  := glavnice_iz_sessiona;
+      v_dugovi_tab    := dugovi_iz_sessiona;
       v_uplate_tab    := uplate_iz_sessiona;
 
-      if v_glavnice_tab.count = 0
+      if v_dugovi_tab.count = 0
       then
          return;
       end if;
 
       v_obracun_tab := ju_obracun_kamate_pkg.obracunaj_zateznu(p_kamatne_stope_tab  => ju_model_pkg.kamatne_stope_za_tip_izracuna(p_tip_izracuna_id => v_obracun_header.tip_izracuna_id),
                                                                p_nacin_obracuna_tab => ju_model_pkg.nacin_obracuna_kamate,
-                                                               p_glavnice_tab       => v_glavnice_tab,
+                                                               p_dugovi_tab         => v_dugovi_tab,
                                                                p_uplate_tab         => v_uplate_tab,
                                                                p_datum_obracuna     => v_obracun_header.datum_izracuna);
 
 
       izbrisi_kolekciju_rezultata;
       
-      obracun_u_session(v_obracun_header, v_obracun_tab);
+      obracun_u_session(v_obracun_tab);
 
       commit;
     end;
@@ -728,7 +747,8 @@ as
     
         v_izracun_header_id := load_izracun_header(p_izracun_id);
         
-        load_glavnice_izracuna(p_izracun_id);
+        --load_glavnice_izracuna(p_izracun_id);
+        load_dugove_izracuna(p_izracun_id);
         load_uplate_izracuna(p_izracun_id);
         load_rezultat_izracuna(p_izracun_id);
         

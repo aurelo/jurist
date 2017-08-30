@@ -4,32 +4,32 @@ prompt =======================================
 prompt
 create or replace package ju_session_izracun_pkg
 as
-  function ZATEZNE_IZRACUN    return  varchar2;
-  function GLAVNICE           return  varchar2;
-  function UPLATE             return  varchar2;
-  function ZATEZNE_REZULTAT   return  varchar2;
+  function ZATEZNE_IZRACUN    return  varchar2 deterministic;
+  function DUGOVI             return  varchar2 deterministic;
+  function UPLATE             return  varchar2 deterministic;
+  function ZATEZNE_REZULTAT   return  varchar2 deterministic;
 
   procedure stvori_kolekciju_izracuna;
-  
+
   procedure izbrisi_kolekciju_izracuna;
   
-  procedure stvori_kolekciju_glavnica;
-  
-  procedure izbrisi_kolekciju_glavnica;
-  
+  procedure stvori_kolekciju_dugova;
+
+  procedure izbrisi_kolekciju_dugova;
+
   procedure stvori_kolekciju_uplata;
-  
+
   procedure izbrisi_kolekciju_uplata;
-  
+
   procedure stvori_kolekciju_rezultata;
-  
+
   procedure izbrisi_kolekciju_rezultata;
-  
+
   procedure inicijalno_stvaranje_kolekcija;
-  
+
   procedure clear_session_kolekcije;
 
-  
+
   function novi_izracun(
       p_tip_izracuna_id     in     ju_tipovi_izracuna.id%type
      ,p_datum_izracuna      in     date
@@ -38,50 +38,53 @@ as
   return apex_collections.seq_id%type
   ;
   
-  function nova_glavnica(
-     p_iznos_glavnice       in      number
-    ,p_datum_glavnice       in      date 
+  function novi_dug(
+     p_iznos_duga           in      number
+    ,p_datum_duga           in      date
+    ,p_tip_duga_id          in      number
   )
   return number;
-  
-  procedure obrisi_glavnicu(
+
+  procedure obrisi_dug(
     p_seq_id                in      apex_collections.seq_id%type
   );
-  
-  procedure azuriraj_glavnicu(
+
+  procedure azuriraj_dug(
     p_seq_id                in      apex_collections.seq_id%type
    ,p_iznos_glavnice        in      number
    ,p_datum_izracuna        in      date
+   ,p_tip_duga_id           in      number
    );
-  
+
   function nova_uplata(
     p_iznos_uplate          in      number
    ,p_datum_uplate          in      date
+   ,p_tip_uplate_id         in      number
   )
   return number;
-  
+
   procedure obrisi_uplatu(
     p_seq_id                in      apex_collections.seq_id%type
   );
-  
+
   procedure azuriraj_uplatu(
-    p_seq_id                in      apex_collections.seq_id%type    
+    p_seq_id                in      apex_collections.seq_id%type
    ,p_iznos_uplate          in      number
    ,p_datum_uplate          in      date
   )
   ;
-  
+
   function novi_rezultat_izracuna(
     p_izracun_rec           in      ju_session_rezultat_izracuna_v%rowtype
   )
   return number;
-  
+
   function mogu_obaviti_izracun(
     p_tip_izracuna          in      number
    ,p_datum_izracuna        in      date
   )
   return boolean;
-  
+
   function mogu_obaviti_izracun_YN(
     p_tip_izracuna          in      number
    ,p_datum_izracuna        in      date
