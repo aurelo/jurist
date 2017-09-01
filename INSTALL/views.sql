@@ -147,3 +147,57 @@ as
       ,        decode(vta.sort_datuma, 'DESC', jte.datum) desc
       ,        jte.id
 /
+prompt
+prompt Creating view JU_IZRACUN_REKAPITULACIJA_V
+prompt =========================================
+prompt
+create or replace view ju_izracun_rekapitulacija_v as
+with
+ dugovi as
+(
+select    count(*) broj_dugova
+,         nvl(sum(sd.iznos), 0) suma_dugova
+,         sd.izracun_id
+from      ju_transakcije_izracuna_sort_v sd
+where     sd.strana = 'D'
+group by  sd.izracun_id
+)
+,uplate as
+(
+ select   count(*) broj_uplata
+ ,        nvl(sum(su.iznos), 0) iznos_uplata
+ ,        su.izracun_id
+from      ju_transakcije_izracuna_sort_v su
+where     su.strana = 'P'
+group by  su.izracun_id
+)
+,dug as
+(
+ select   nvl(sum(ri.osnovica_izracuna_po_dugu), 0) dugovi_dug
+ ,        nvl(sum(ri.osnovica_izracuna_po_kamati), 0) kamate_dug
+ ,        nvl(sum(ri.ukupna_zatezna_kamata), 0) zatezna_kamata
+ ,        ri.ize_id izracun_id
+ from     ju_rezultat_izracuna ri
+ where    ri.id in (
+   select   max(ri_last.id)
+   from     ju_rezultat_izracuna ri_last
+   where    ri_last.ize_id = ri.ize_id
+   and      ri_last.dug_id = ri.dug_id
+ )
+ group by ri.ize_id
+)
+select   dug.izracun_id
+,        broj_dugova
+,        suma_dugova
+,        broj_uplata
+,        iznos_uplata
+,        dugovi_dug
+,        kamate_dug
+,        zatezna_kamata
+,        dugovi_dug + kamate_dug + zatezna_kamata ukupan_dug
+from     dugovi
+,        uplate
+,        dug
+where    dug.izracun_id = dugovi.izracun_id
+and      dug.izracun_id = uplate.izracun_id(+)
+/

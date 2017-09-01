@@ -68,7 +68,8 @@ create table ju_transakcije
   vta_id number,
   ize_id number,
   iznos  number,
-  datum  date
+  datum  date,
+  session_transakcija_id number
 )
 /
 alter table ju_transakcije
