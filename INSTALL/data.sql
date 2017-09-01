@@ -151,6 +151,10 @@ insert into JU_KAMATNE_STOPE (id, stopa, datum_od, datum_do, zki_id, toa_id)
 values (42, 22, to_date('01-07-1994', 'dd-mm-yyyy'), to_date('07-05-1996', 'dd-mm-yyyy'), 1, 2);
 insert into JU_KAMATNE_STOPE (id, stopa, datum_od, datum_do, zki_id, toa_id)
 values (7, 15, to_date('01-07-2011', 'dd-mm-yyyy'), to_date('31-07-2015', 'dd-mm-yyyy'), 2, 2);
+insert into JU_KAMATNE_STOPE (id, stopa, datum_od, datum_do, zki_id, toa_id)
+values (67, 7.41, to_date('01-07-2017', 'dd-mm-yyyy'), to_date('31-12-2017', 'dd-mm-yyyy'), 2, 1);
+insert into JU_KAMATNE_STOPE (id, stopa, datum_od, datum_do, zki_id, toa_id)
+values (68, 9.41, to_date('01-07-2017', 'dd-mm-yyyy'), to_date('31-12-2017', 'dd-mm-yyyy'), 2, 2);
 commit;
 prompt 28 records loaded
 prompt Loading JU_DEFINICIJA_TIPA_IZRACUNA...

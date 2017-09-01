@@ -201,3 +201,31 @@ from     dugovi
 where    dug.izracun_id = dugovi.izracun_id
 and      dug.izracun_id = uplate.izracun_id(+)
 /
+prompt
+prompt Creating view ju_izracun_pretplata_v
+prompt ====================================
+prompt
+create or replace view ju_izracun_pretplata_v as
+(
+select    ri.ize_id izracun_id
+,         ri.uplata_id
+,         u.iznos
+,         u.datum datum_uplate
+,         sum(ri.umanjenje_zbog_uplate) umanjenje_zbog_uplate
+,         u.iznos - sum(ri.umanjenje_zbog_uplate) preplaceno
+from      Ju_Rezultat_Izracuna ri
+,         Ju_Transakcije u
+where     u.id = ri.uplata_id
+and       ri.id in (
+   select   max(ri_last.id)
+   from     Ju_Rezultat_Izracuna ri_last
+   where    ri_last.uplata_id = ri.uplata_id
+   and      ri_last.osnovica > 0
+   group by ri_last.dug_id
+)
+group by ri.ize_id 
+,         ri.uplata_id
+,         u.iznos
+,         u.datum 
+)
+/
