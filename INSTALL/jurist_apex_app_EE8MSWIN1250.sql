@@ -14,9 +14,9 @@ begin
 wwv_flow_api.import_begin (
  p_version_yyyy_mm_dd=>'2016.08.24'
 ,p_release=>'5.1.2.00.09'
-,p_default_workspace_id=>16622035626872281584
+,p_default_workspace_id=>42
 ,p_default_application_id=>70465
-,p_default_owner=>'JUVARE'
+,p_default_owner=>'JURIST'
 );
 end;
 /
@@ -88,7 +88,7 @@ begin
 wwv_flow_api.create_flow(
  p_id=>wwv_flow.g_flow_id
 ,p_display_id=>nvl(wwv_flow_application_install.get_application_id,70465)
-,p_owner=>nvl(wwv_flow_application_install.get_schema,'JUVARE')
+,p_owner=>nvl(wwv_flow_application_install.get_schema,'JURIST')
 ,p_name=>nvl(wwv_flow_application_install.get_application_name,'Jurist')
 ,p_alias=>nvl(wwv_flow_application_install.get_application_alias,'JURIST')
 ,p_page_view_logging=>'YES'
@@ -14214,7 +14214,7 @@ wwv_flow_api.create_report_columns(
 ,p_column_display_sequence=>3
 ,p_hidden_column=>'Y'
 ,p_derived_column=>'N'
-,p_ref_schema=>'JUVARE'
+,p_ref_schema=>'JURIST'
 ,p_ref_table_name=>'JU_KAMATNE_STOPE'
 ,p_ref_column_name=>'ID'
 );
@@ -14937,7 +14937,7 @@ wwv_flow_api.create_report_columns(
 ,p_column_alignment=>'CENTER'
 ,p_derived_column=>'N'
 ,p_include_in_export=>'Y'
-,p_ref_schema=>'JUVARE'
+,p_ref_schema=>'JURIST'
 ,p_ref_table_name=>'JU_TIPOVI_OSOBA'
 ,p_ref_column_name=>'ID'
 );
@@ -14951,7 +14951,7 @@ wwv_flow_api.create_report_columns(
 ,p_column_alignment=>'CENTER'
 ,p_derived_column=>'N'
 ,p_include_in_export=>'Y'
-,p_ref_schema=>'JUVARE'
+,p_ref_schema=>'JURIST'
 ,p_ref_table_name=>'JU_TIPOVI_OSOBA'
 ,p_ref_column_name=>'OPIS'
 );

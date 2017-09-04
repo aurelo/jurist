@@ -16,3 +16,4 @@
 -- data
 -- @@data.sql
 @@data_EE8MSWIN1250.sql
+@@data_EE8MSWIN1250_odvjetnik.sql
