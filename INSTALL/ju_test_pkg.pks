@@ -1,7 +1,3 @@
-prompt
-prompt Creating package JU_TEST_PKG
-prompt ============================
-prompt
 CREATE OR REPLACE PACKAGE ju_test_pkg
 as
     ---

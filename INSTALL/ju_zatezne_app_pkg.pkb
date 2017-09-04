@@ -1,7 +1,3 @@
-prompt
-prompt Creating package body JU_ZATEZNE_APP_PKG
-prompt ========================================
-prompt
 create or replace package body ju_zatezne_app_pkg
 as
     function new_id

@@ -1,7 +1,3 @@
-prompt
-prompt Creating package JU_MODEL_PKG
-prompt =============================
-prompt
 CREATE OR REPLACE PACKAGE ju_model_pkg
 as
 -------------------------------------------------------------------------------

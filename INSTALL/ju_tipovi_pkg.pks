@@ -1,7 +1,3 @@
-prompt
-prompt Creating package JU_TIPOVI_PKG
-prompt ==============================
-prompt
 CREATE OR REPLACE PACKAGE ju_tipovi_pkg
 as
     -- kamatna stopa za period

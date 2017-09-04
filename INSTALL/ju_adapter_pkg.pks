@@ -1,7 +1,3 @@
-prompt
-prompt Creating package JU_ADAPTER_PKG
-prompt ===============================
-prompt
 create or replace package ju_adapter_pkg is
 
    function dugovi_iz(

@@ -1,7 +1,3 @@
-prompt
-prompt Creating package body JU_OBRACUN_KAMATE_PKG
-prompt ===========================================
-prompt
 CREATE OR REPLACE PACKAGE BODY ju_obracun_kamate_pkg
 as
 -------------------------------------------------------------------------------

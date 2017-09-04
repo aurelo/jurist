@@ -1,7 +1,3 @@
-prompt
-prompt Creating package body JU_TEST_PKG
-prompt =================================
-prompt
 CREATE OR REPLACE PACKAGE BODY ju_test_pkg
 as
 -------------------------------------------------------------------------------
@@ -153,7 +149,7 @@ as
 
        v_izracun_kamatne_stope_tab := ju_ukamacivanje_engine_pkg.proporcionalni_obracun(v_naplata_dugovanja_tab, ju_konkretno_pkg.kamatne_stope_za_fizicke_osobe);
 
-       assert(v_izracun_kamatne_stope_tab.count = 3, 'Ocekujem tri razdoblja ukamaÄ‚Â¦ivanja, a dobio: '||v_izracun_kamatne_stope_tab.count);
+       assert(v_izracun_kamatne_stope_tab.count = 3, 'Ocekujem tri razdoblja ukamaĂ„â€šĂ‚Â¦ivanja, a dobio: '||v_izracun_kamatne_stope_tab.count);
 
        -- provjeri rate obracuna
        v_prvi_dio_obracuna    := v_izracun_kamatne_stope_tab(1);
@@ -210,7 +206,7 @@ as
        v_kamatne_stope_tab := ju_model_pkg.kamatne_stope_za_tip_izracuna(1);
 
        --output_kamatne_stope_tab(v_kamatne_stope_tab);
-       assert(v_kamatne_stope_tab.count = 11, 'Za fizicke osobe ocekujem 11 kamatnih stopa, a dobio '||v_kamatne_stope_tab.count);
+       assert(v_kamatne_stope_tab.count >= 11, 'Za fizicke osobe ocekujem 11 kamatnih stopa, a dobio '||v_kamatne_stope_tab.count);
 
        assert(v_kamatne_stope_tab(1).stopa = 30);
        assert(v_kamatne_stope_tab(1).datum_od = to_date('30.05.1994', 'dd.mm.yyyy'));
@@ -225,7 +221,7 @@ as
        v_kamatne_stope_tab := ju_model_pkg.kamatne_stope_za_tip_izracuna(21);
 
        --output_kamatne_stope_tab(v_kamatne_stope_tab);
-       assert(v_kamatne_stope_tab.count = 11, 'Za obicne pravne osobe ocekujem 11 kamatnih stopa, a dobio '||v_kamatne_stope_tab.count);
+       assert(v_kamatne_stope_tab.count >= 11, 'Za obicne pravne osobe ocekujem 11 kamatnih stopa, a dobio '||v_kamatne_stope_tab.count);
 
        assert(v_kamatne_stope_tab(1).stopa = 30);
        assert(v_kamatne_stope_tab(1).datum_od = to_date('30.05.1994', 'dd.mm.yyyy'));
@@ -242,7 +238,7 @@ as
 
 
        --output_kamatne_stope_tab(v_kamatne_stope_tab);
-       assert(v_kamatne_stope_tab.count = 16, 'Za predstecajne ocekujem 16 kamatnih stopa, a dobio '||v_kamatne_stope_tab.count);
+       assert(v_kamatne_stope_tab.count >= 16, 'Za predstecajne ocekujem 16 kamatnih stopa, a dobio '||v_kamatne_stope_tab.count);
 
        assert(v_kamatne_stope_tab(1).stopa = 30);
        assert(v_kamatne_stope_tab(1).datum_od = to_date('30.05.1994', 'dd.mm.yyyy'));
@@ -323,7 +319,7 @@ as
     end;
 
 -------------------------------------------------------------------------------
--- testovi za odreÄ‚Â°ivanje nacina izracuna kamate
+-- testovi za odreĂ„â€šĂ‚Â°ivanje nacina izracuna kamate
     procedure t_odredivanje_nacina_izracuna
     is
        v_rata                       ju_tipovi_pkg.dug_po_kamatnoj_stopi_rec;
@@ -459,7 +455,7 @@ as
       assert(v_uplate_unutar_glavnice_tab.count = 2, 'Dvije uplate na isti datum obje utjecu na glavnicu!');
 
 
-     -- dvije uplate, jedna nakon dospijeÄ‚Â¦a
+     -- dvije uplate, jedna nakon dospijeĂ„â€šĂ‚Â¦a
       v_uplata1.datum := to_date('31.05.2016', 'dd.mm.yyyy');
       v_uplata2.datum := to_date('30.06.2017', 'dd.mm.yyyy');
 
@@ -1140,15 +1136,15 @@ as
 
      v_suma_duga          number;
      v_suma_kamate        number;
-   begin     
+   begin
      v_dug_rec.id     := 23;
      v_dug_rec.iznos  := 50;
      v_dug_rec.datum  := to_date('05.12.2013', 'dd.mm.yyyy');
 
      v_dugovi_tab(v_dugovi_tab.count + 1) := v_dug_rec;
-  
-   
-   
+
+
+
      v_dug_rec.id     := 22;
      v_dug_rec.iznos  := 150;
      v_dug_rec.datum  := to_date('05.05.2013', 'dd.mm.yyyy');
@@ -1201,7 +1197,7 @@ as
 
        t_vise_glavnica_uplata;
        t_podmirenje_na_dan_obracuna;
-       
+
        t_dug_plus_ovrha;
     end;
 

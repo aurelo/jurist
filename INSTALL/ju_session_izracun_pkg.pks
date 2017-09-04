@@ -1,7 +1,3 @@
-prompt
-prompt Creating package JU_SESSION_IZRACUN_PKG
-prompt =======================================
-prompt
 create or replace package ju_session_izracun_pkg
 as
   function ZATEZNE_IZRACUN    return  varchar2 deterministic;

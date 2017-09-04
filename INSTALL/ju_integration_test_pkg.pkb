@@ -1,7 +1,3 @@
-prompt
-prompt Creating package body ju_integration_test_pkg
-prompt =============================================
-prompt
 create or replace package body ju_integration_test_pkg
 as
    --C_DUMMY_SESSION   constant ju_session_izracun_zatezne.session_context%type := 'ABC123456789S';

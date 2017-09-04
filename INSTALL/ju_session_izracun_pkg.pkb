@@ -1,7 +1,3 @@
-prompt
-prompt Creating package body JU_SESSION_IZRACUN_PKG
-prompt ============================================
-prompt
 create or replace package body ju_session_izracun_pkg 
 as   
 -------------------------------------------------------------------------------   
