@@ -8,7 +8,7 @@ as
   procedure stvori_kolekciju_izracuna;
 
   procedure izbrisi_kolekciju_izracuna;
-  
+
   procedure stvori_kolekciju_dugova;
 
   procedure izbrisi_kolekciju_dugova;
@@ -33,7 +33,7 @@ as
   )
   return apex_collections.seq_id%type
   ;
-  
+
   function novi_dug(
      p_iznos_duga                  in      number
     ,p_datum_duga                  in      date
@@ -54,9 +54,9 @@ as
    );
 
   function nova_uplata(
-    p_iznos_uplate                in      number  
-   ,p_datum_uplate                in      date  
-   ,p_tip_uplate_id               in      number  
+    p_iznos_uplate                in      number
+   ,p_datum_uplate                in      date
+   ,p_tip_uplate_id               in      number
    ,p_na_osnovu_transakcije_id    in      number default null
   )
   return number;
@@ -105,6 +105,14 @@ as
     p_izracun_id      in    ju_izracun_zatezne.id%type
   )
   ;
+
+-------------------------------------------------------------------------------
+  function validiraj_period_izracuna(
+    p_tip_izracuna          in      number
+   ,p_datum_izracuna        in      date  
+  )
+  return varchar2;
+
 
 end;
 /

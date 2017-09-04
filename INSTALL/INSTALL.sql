@@ -14,4 +14,5 @@
 @@triggers.sql
 
 -- data
-@@data.sql
+-- @@data.sql
+@@data_EE8MSWIN1250.sql
